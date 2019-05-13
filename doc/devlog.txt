@@ -36,3 +36,11 @@ Changed "I" and "my" to "we" and "our"
 Elaborated on flooring debug
 Elaborated on how we would obtain A/B schedule information
 ==============================================================
+damianW -- 2019-05-13 12:29
+--------------------------------------------------------------
+Set up structure for files
+Added app.py
+Home page - has default set up for standard stuy schedule
+modeled on bert schedule; minimal bootstrapification (footer
+and primary alert)
+==============================================================
