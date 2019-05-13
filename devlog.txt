@@ -28,3 +28,11 @@ amitN -- 2019-05-10 12:12PM
 --------------------------------------------------------------
 - Added design doc
 ==============================================================
+damianW -- 2019-05-12 23:00
+--------------------------------------------------------------
+Responded to feedback on design docs
+Elaborated on site map and landing page
+Changed "I" and "my" to "we" and "our"
+Elaborated on flooring debug
+Elaborated on how we would obtain A/B schedule information
+==============================================================
