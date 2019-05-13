@@ -1,0 +1,209 @@
+<!-- CSS:GO-Dennis Chen && Damian Wasilewicz
+   #SoftDev1 pd 6
+   K #22: Make Your Dog Food Taste Better
+   2018-11-08  -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- link to CDN, allows for access to all content without need for local copy -->
+      <!-- includes code for css files -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+   </head>
+   <body>
+      <!-- in general bootstrap's use of containers allows for easy customization-->
+      <!-- if set to container-fluid, it takes up entire width of screen. If not, takes up specified amount-->
+      <div class="container-fluid">
+         <!-- jumbotron is a cool component that extends how much of the viewport something takes up,
+            in order to call extra attention to a key component-->
+         <div class="jumbotron">
+            <div class = "text-center">
+               <h1>Dogs</h1>
+               <p><small>(This is a jumbotron, a flexible component that can extend the
+                 entire viewport to showcase key messages on your website and call extra attention to them) Set with container fluid to extend to width of screen</small>
+            </div>
+         </div>
+      </div>
+      <!-- navbar at the top with a brand named dogs and links -->
+      <!-- boostrap allows for easy creation of navbars and navpills-->
+      <div class = "container">
+      <h2> Navbars! </h2>
+      <p> Navbars are a cool feature in bootstrap.
+      They come built in with subcomponents that include -brand to indicate ownership, etc, -nav for navigation, and other features you can read more about <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox> here </a>
+      Also, clicking on a part of the navbar sends you the subject in question by setting their href to #__divID__</p>
+
+      </div>
+      <nav class="navbar navbar-expand-sm bg-light navbar-light">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <a class="navbar-brand" href="#">DOGS</a>
+            </div>
+            <div class = "collapse navbar-collapse" id = "collapsibleNavbar">
+               <ul class="navbar-nav">
+                  <li class = "nav-item"><a class = "nav-link" href="#medi">Media</a></li>
+                  <li class = "nav-item"><a class = "nav-link" href="#text">Text</a></li>
+                  <li class = "nav-item"><a class = "nav-link" href="#buttons">Buttons</a></li>
+                  <li class = "nav-item"><a class = "nav-link" href="#form">Forms</a></li>
+                  <li class = "nav-item"><a class = "nav-link" href="#columns">Columns</a></li>
+                  <li class = "nav-item"><a class = "nav-link" href="#alerts">Alerts</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <!-- Circular image of dog -->
+      <!-- easy to input images -->
+      <div class="container">
+         <div class = "text-center">
+            <h1>Dogs(And Media Things)</h1>
+          </div>
+          <div class="media" id = "medi'">
+              <img class="mr-3" src="https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg" alt="Cinque Terre" width="304" height="236">
+              <div class="media-body">
+                  <h5 class="mt-0">Media heading</h5>
+                  Using media, text is automatically formatted next to the image.
+              </div>
+          </div>
+         <!-- Dog lorem ipsum with text edits in the middle -->
+         <div id = "text">
+         <h2> Text! </h2>
+         <p> There are many things you can do to text with bootstrap using certain
+           keywords. This next lorem ipsum paragraph has many of those features.(Write the feature next to edited text)</p>
+         <p><small>(Small)Doggo ipsum pats heckin heckin good boys and</small> girls most angery pupper I have ever seen <strong>(strong)tungg, smol borking doggo with a long snoot</strong> for pats very good spot pupperino.
+            Such treat <em>(em, i.e. italicized)extremely cuuuuuute super chub many</em> pats floofs big ol pupper, lotsa <mark>(mark, i.e. highlight)pats heckin angery woofer many pats most angery pupper I have ever seen, </mark>waggy wags boofers doggorino heckin angery woofer.
+            Doing me a frighten <del>(del, i.e. crossed out text)long water shoob long woofer most angery</del> pupper I have ever seen tungg, what a nice floof <u>(u, i.e. underline)bork mlem, ur givin me a spook </u>long water shoob length boy. H*ck dat tungg tho you are doing me a frighten floofs doge, borkdrive adorable doggo.
+         </p>
+       </div>
+         <!-- drop down menu-lists 3 breeds -->
+         <br>
+         <div id = "buttons">
+         <h1> Buttons! </h1>
+         Different types of buttons with specific classes labelled. Buttons are easy to use and come in different forms.<br>
+         <br>
+         <button type="button" class="btn btn-primary">primary</button>
+         <button type="button" class="btn btn-secondary">secondary</button>
+         <button type="button" class="btn btn-success">success</button>
+         <button type="button" class="btn btn-danger">danger</button>
+         <button type="button" class="btn btn-warning">warning</button>
+         <button type="button" class="btn btn-info">info</button>
+         <button type="button" class="btn btn-light">light</button>
+         <button type="button" class="btn btn-dark">dark</button>
+       </div>
+         <!--form that doesn't go anywhere (sticking to one page), lets you type in things -->
+         <br>
+         <br>
+         <h1>Forms! </h1>
+         An inactive form. Forms in bootstrap come with classes in order to provide variety but also uniformity across different types.
+         Labels are a required attribute of a form.
+         <form action="">
+            <div class="form-group" id = "form">
+               <label for="dog">Dog</label>
+               <input type="dog" class="form-control" id="doge" placeholder="Enter Dog Breed" name="dog">
+            </div>
+         </form>
+      </div>
+      <br>
+      <!-- grid system -->
+      <!-- One of the cool parts of bootstrap is its use of the grid system and flexbox when defining how much space columns take up
+         If column sizes arent specified, adjacent columns will take up equal space
+         (i.e, two components each take up 50%, three 33.3%, etc.)
+         Column widths are fluid and relative so that they are properly sized
+         Breakpoints make widths responsive and set sizes (as with col-sm-2 below)-->
+      <!-- equally wide columns -->
+      <div class="container">
+         <h2>Each is a column of equal length, equal to 2 out of 12</h2>
+         <medium>Bootstrap uses a system of grids of rows and columns when it comes to layout and display. Unless specified,
+           adjacent columns share equal amounts of width on the screen
+           The grid system makes use of <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox>flexbox</a></medium>
+         <br>
+         <br>
+         <div class="row" id = "columns">
+            <div class="col">
+               <h2>Bulldog</h2>
+               <li> Compact </li>
+               <li> That right kind of cute-ugly </li>
+            </div>
+            <div class="col">
+               <h2>Dachsund</h2>
+               <li> Sounds like dashing which they are </li>
+               <li> Big head and small body-ideal proportions </li>
+            </div>
+            <div class="col">
+               <h2>Boxer</h2>
+               <li> A fighter</li>
+               <li> Perky ears </li>
+            </div>
+            <div class="col">
+               <h2>Pug</h2>
+               <li> Big eyes</li>
+               <li> Mblep </li>
+            </div>
+            <div class="col">
+               <h2>Golden Retriever</h2>
+               <li> Golden boy</li>
+               <li> Good fetching skills </li>
+            </div>
+            <div class="col">
+               <h2>Mix-breed</h2>
+               <li> Endless possibilities</li>
+               <li> Diverse </li>
+            </div>
+         </div>
+         <br>
+         <br>
+         <!-- small column for shih tzus-->
+      <h2>Smaller column for shih tzu, larger column for spaniel</h2>
+      <br>
+      <br>
+         <div class = "row">
+            <div class = "col-sm-2 bg-success">
+               <h2>Shih Tzu(Column of Size 2)</h2>
+               <ul>
+                  <li> Small </li>
+                  <li> Furry </li>
+                  <li> Nice </li>
+               </ul>
+            </div>
+            <!-- large column for long dog name -->
+            <div class = "col-sm-10 bg-warning">
+               <h2>Cavalier King Charles Spaniel(Column of Size 10)</h2>
+               <ul>
+                  <li> Very long name </li>
+                  <li> Playful </li>
+                  <li> Droopy Ears </li>
+               </ul>
+            </div>
+         </div>
+      <br>
+      <h2>Alerts!</h2>
+      <p>Alerts are used to provide feedback messages for users. There
+      are many different kinds of alerts. For example: </p>
+      <div class="alert alert-primary" role="alert" id = "alerts">
+        primary alert
+      </div>
+      <div class="alert alert-secondary" role="alert">
+        secondary alert
+      </div>
+      <div class="alert alert-success" role="alert">
+        success alert
+      </div>
+      <div class="alert alert-danger" role="alert">
+        danger alert
+      </div>
+      <div class="alert alert-warning" role="alert">
+        warning alert
+      </div>
+      <div class="alert alert-info" role="alert">
+        info alert
+      </div>
+      <div class="alert alert-light" role="alert">
+        light alert
+      </div>
+      <div class="alert alert-dark" role="alert">
+        dark alert
+      </div>
+      <!-- Footer -->
+      <footer class="page-footer bg-dark">
+         <div class="footer-copyright text-center py-3 text-white">© 2018 CSS:GO</div>
+      </footer>
+   </body>
+</html>
