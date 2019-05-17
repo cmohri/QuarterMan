@@ -183,7 +183,7 @@ function mins_into_left(){
         }
     }
 		 document.getElementById('minutes_into').innerHTML = checkTime(a);
-		 document.getElementById('minutes_left').innerHTML = checkTime(b);
+		 document.getElementById('minutes_left').innerHTML = checkTime(b -1);
 var t = setTimeout(mins_into_left, 500);
 		 //return (a, b);
 }
