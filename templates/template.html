@@ -13,10 +13,10 @@
     <div align="center">
   <center>
   <table border="0" cellspacing="10" cellpadding="10"><tr><td><center><table border="1" width="100%" cellspacing="3">
-<tr><td align="center" colspan="3"><b>{{ title }}</b></td></tr>
-<tr id="period0"><td align="center">{{ p1 }}</td><td>&nbsp; {{ p1t }}</td></tr>
-<tr id="period1"><td align="center">{{ p2 }}</td><td>&nbsp; {{ p2t }}</td></tr>
-<tr id="period2"><td align="center">{{ p3 }}</td><td>&nbsp; {{ p3t }}</td></tr>
+<tr><td align="center" colspan="3"><b>{{ form.title.data }} </b></td></tr>
+<tr id="period0"><td align="center">{{ form.p1title.data }}</td><td>&nbsp; {{ form.p1time.data }}</td></tr>
+<tr id="period1"><td align="center">{{ form.p2title.data }}</td><td>&nbsp; {{ form.p2time.data }}</td></tr>
+<tr id="period2"><td align="center">{{ form.p3title.data }}</td><td>&nbsp; {{ form.p3time.data }}</td></tr>
 
 </table></center>
 <br>
@@ -58,4 +58,17 @@
 </footer>
 </div>
 </body>
+<script>
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+</script>
 </html>
