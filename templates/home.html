@@ -1,4 +1,4 @@
-<!DOACTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -121,7 +121,7 @@ function mins_into_left(){
         if (m <= 15){
             a = 29 + m;
             b = 15 -m;
-	    document.getElementById("period3").style.color = "red";	 
+	    document.getElementById("period3").style.color = "red";
         } else if (m <= 20){
             a = m - 15;
 	    b = 20 -m;
@@ -225,7 +225,7 @@ function mins_into_left(){
 		 a -= 1;}
 		 if (b != 0){
 		 b -= 1;}
-		 
+
 		 document.getElementById('minutes_into').innerHTML = checkTime(a );
 		 document.getElementById('minutes_left').innerHTML = checkTime(b);
 var t = setTimeout(mins_into_left, 500);
@@ -245,7 +245,7 @@ function checkTime(i) {
 
 
 
-								
+
 								</script>
 
 
