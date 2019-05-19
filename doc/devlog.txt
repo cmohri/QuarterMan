@@ -44,3 +44,11 @@ Home page - has default set up for standard stuy schedule
 modeled on bert schedule; minimal bootstrapification (footer
 and primary alert)
 ==============================================================
+claraM -- 2019-05-16
+--------------------------------------------------------------
+Added live time display of minutes into, minutes left, and current time
+==============================================================
+claraM -- 2019-05-19
+--------------------------------------------------------------
+Added highlighting of current period, fixed issues with minute flooring
+==============================================================
