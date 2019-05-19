@@ -52,3 +52,11 @@ claraM -- 2019-05-19
 --------------------------------------------------------------
 Added highlighting of current period, fixed issues with minute flooring
 ==============================================================
+damianW -- 2019-05-19 17:40
+--------------------------------------------------------------
+Integrated wtforms
+Created custom schedule template page maker and made it work
+with input
+Added nonfunctional dropdown (for later, to decide how many
+periods the user wants to create)
+==============================================================
