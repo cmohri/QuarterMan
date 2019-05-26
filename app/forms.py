@@ -3,6 +3,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
 class TemplateForm(FlaskForm):
+    ''' Creates class that is used in conjunction with wtforms to make
+    form creation easier to handle (when making templates, etc.) '''
     title = StringField('Title', validators=[DataRequired()])
     numpds = StringField('Number of Periods', validators=[DataRequired()])
     p1title  = StringField('Period 1 Title', validators=[DataRequired()])
