@@ -82,4 +82,6 @@ Removed unnecessary bootstrap file
 Commented out functions that we probably will not pursue (i.e,
 the drop down feature in the maketemplate page, since we
 will have a more dynamic way of letting users choose)
+Also added nonfunctional two-submit button so users can choose
+whether to public template to public or private gallery
 ==============================================================

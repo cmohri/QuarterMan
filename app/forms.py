@@ -13,4 +13,5 @@ class TemplateForm(FlaskForm):
     p2time = StringField('Period 2 Time', validators=[DataRequired()])
     p3title = StringField('Period 3 Title', validators=[DataRequired()])
     p3time = StringField('Period 3 Time', validators=[DataRequired()])
-    submit = SubmitField('Create Template')
+    submitpriv = SubmitField('Add Template to Private Gallery')
+    submitpub = SubmitField('Add Template to Public Gallery')
