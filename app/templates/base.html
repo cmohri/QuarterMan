@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} Default {% endblock %}</title>
+        <link rel = "stylesheet" href = "{{ url_for('static', filename='css/styles.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="order-0">
+                <a class="navbar-brand mx-auto" href="{{ url_for('index') }}">Stuyvesant Scheduling</a>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    {% if session.get("user") == None %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/google/login">Login</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

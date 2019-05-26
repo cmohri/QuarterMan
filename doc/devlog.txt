@@ -52,6 +52,10 @@ claraM -- 2019-05-19
 --------------------------------------------------------------
 Added highlighting of current period, fixed issues with minute flooring
 ==============================================================
+aschJa -- 2019-05-19
+--------------------------------------------------------------
+Added OAuth using Flask-Dance, later removed
+==============================================================
 damianW -- 2019-05-19 17:40
 --------------------------------------------------------------
 Integrated wtforms
@@ -59,4 +63,11 @@ Created custom schedule template page maker and made it work
 with input
 Added nonfunctional dropdown (for later, to decide how many
 periods the user wants to create)
+==============================================================
+aschJa -- 2019-05-26
+--------------------------------------------------------------
+Added OAuth integration with Google using loginpass, a library provided by authlib
+Reorganized file structure
+Slimmed down requirements.txt
+Refactored old code to use Jinja2 templating
 ==============================================================
