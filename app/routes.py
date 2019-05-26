@@ -3,6 +3,7 @@ from os import urandom
 import datetime
 from config import Config
 from app import app, models, oauth, db
+from forms import TemplateForm
 
 from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
@@ -35,8 +36,19 @@ app.register_blueprint(blueprint, url_prefix='/google')
 def index():
     return render_template("home.html")
 
-
 @app.route("/logout", methods = ["GET"])
 def logout():
     session.pop("user")
     return redirect(request.referrer)
+
+@app.route('/maketemp', methods = ['GET', 'POST'])
+def maketemp():
+    form = TemplateForm()
+    if form.validate_on_submit():
+        return render_template('template.html', form = form)
+    return render_template('maketemp.html', title='Create Template Schedule', form=form)
+
+@app.route("/template", methods = ['GET', 'POST'])
+def template():
+    form = TemplateForm()
+    return render_template('template.html', form = form)
