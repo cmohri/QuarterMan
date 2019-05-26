@@ -35,12 +35,12 @@ app.register_blueprint(blueprint, url_prefix='/google')
 
 @app.route("/")
 def index():
-''' Home route, loads standard schedule page on schedule '''
+    ''' Home route, loads standard schedule page on schedule '''
     return render_template("home.html")
 
 @app.route("/logout", methods = ["GET"])
 def logout():
-''' Logs the user out, removing them from the current session '''
+    ''' Logs the user out, removing them from the current session '''
     session.pop("user")
     return redirect(request.referrer)
 

@@ -19,7 +19,11 @@ function mins_into_left() {
     var m = today.getMinutes();
     var a; //minutes into
     var b; // minutes left
-    if (h == 8) {
+    if (h >= 0 && h < 8){
+	a = 3000;
+	b = 3000;
+	document.getElementById("period0").style.color = "red";
+    } else if (h == 8) {
         if (m <= 41) {
             a = m;
             b = 41 - m;
@@ -147,10 +151,12 @@ function mins_into_left() {
             a = 6 + m;
             b = 35 - m;
             document.getElementById("period10").style.color = "red";
-        } else {
-            a = 30000;
-            b = 30000;
-        }
+	}
+    } else {
+        a = 30000;
+	//console.log('else');
+        b = 30000;
+	document.getElementById("period11").style.color = "red";
     }
     if (a != 0) {
         a -= 1;
@@ -160,6 +166,7 @@ function mins_into_left() {
     }
 
     document.getElementById('minutes_into').innerHTML = checkTime(a);
+	//checkTime(a);
     document.getElementById('minutes_left').innerHTML = checkTime(b);
     var t = setTimeout(mins_into_left, 500);
     //return (a, b);
