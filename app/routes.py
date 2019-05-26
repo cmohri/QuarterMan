@@ -11,6 +11,7 @@ from loginpass.google import Google
 
 
 def handle_authorize(remote, token, user_info):
+    ''' Handles authentication of user information '''
     q = models.User.query.filter_by(email=user_info.email)
     if q.count() == 0:
         # If user doesn't exist in our database yet, create user
@@ -34,15 +35,19 @@ app.register_blueprint(blueprint, url_prefix='/google')
 
 @app.route("/")
 def index():
+''' Home route, loads standard schedule page on schedule '''
     return render_template("home.html")
 
 @app.route("/logout", methods = ["GET"])
 def logout():
+''' Logs the user out, removing them from the current session '''
     session.pop("user")
     return redirect(request.referrer)
 
 @app.route('/maketemp', methods = ['GET', 'POST'])
 def maketemp():
+    '''creates template for either public or private gallery use. Makes use
+    of the TemplateForm object, which is created in forms.py and imported '''
     form = TemplateForm()
     if form.validate_on_submit():
         return render_template('template.html', form = form)
@@ -50,5 +55,6 @@ def maketemp():
 
 @app.route("/template", methods = ['GET', 'POST'])
 def template():
+    '''Loads up the template created in maketemp '''
     form = TemplateForm()
     return render_template('template.html', form = form)

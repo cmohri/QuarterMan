@@ -64,10 +64,18 @@ with input
 Added nonfunctional dropdown (for later, to decide how many
 periods the user wants to create)
 ==============================================================
+damianW -- 2019-05-23 16:30
+--------------------------------------------------------------
+Made small changes with wtforms
+==============================================================
 aschJa -- 2019-05-26
 --------------------------------------------------------------
 Added OAuth integration with Google using loginpass, a library provided by authlib
 Reorganized file structure
 Slimmed down requirements.txt
 Refactored old code to use Jinja2 templating
+==============================================================
+damianW -- 2019-05-23 16:30
+--------------------------------------------------------------
+
 ==============================================================
