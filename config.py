@@ -2,6 +2,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
+    ''' config file used for authentication with wtforms '''
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'the-wizard-of-oz'
 
     TEMPLATES_AUTO_RELOAD = True

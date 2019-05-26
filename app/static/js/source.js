@@ -1,4 +1,5 @@
 function startTime() {
+  //Function to receive current time
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -11,6 +12,8 @@ function startTime() {
 }
 
 function mins_into_left() {
+  //Function used to determine which period we are currently in and
+  //make that period appear red
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -163,11 +166,13 @@ function mins_into_left() {
 }
 
 function all() {
+  //runs other functions
     startTime();
     mins_into_left();
 }
 
 function checkTime(i) {
+  //for consistency of time format
     if (i < 10) {
         i = "0" + i
     }
@@ -176,6 +181,7 @@ function checkTime(i) {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  //adds to the DOM
     startTime();
     mins_into_left();
 });
