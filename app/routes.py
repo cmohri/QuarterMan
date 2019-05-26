@@ -3,7 +3,7 @@ from os import urandom
 import datetime
 from config import Config
 from app import app, models, oauth, db
-from forms import TemplateForm
+from .forms import TemplateForm
 
 from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
