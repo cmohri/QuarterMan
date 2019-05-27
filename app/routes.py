@@ -25,7 +25,6 @@ def handle_authorize(remote, token, user_info):
         "last_name": u.last_name,
         "email": u.email
     }
-    print(user_info)
     return redirect(url_for("index"))
 
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
@@ -39,7 +38,14 @@ def index():
 @app.route("/logout", methods = ["GET"])
 def logout():
     session.pop("user")
-    return redirect(request.referrer)
+    return redirect(url_for("index"))
+
+@app.route("/schedules/create", methods=["GET"])
+def create_schedule():
+    if session.get("user") is None:
+        return redirect("/google/login")
+    return render_template("create_schedule.html")
+
 
 @app.route('/maketemp', methods = ['GET', 'POST'])
 def maketemp():
