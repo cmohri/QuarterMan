@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container create-schedule-container">
+        <h1 class="title">Create a Schedule Template</h1>
+        <svg id = "add-slot" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+            <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+            <ellipse ry="10" rx="10" id="svg_1" cy="10" cx="10" stroke-width="0" stroke="#000" fill="#007bff"/>
+            <rect id="svg_2" height="2.5" width="10" y="8.75" x="5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+            <rect id="svg_3" height="10" width="2.5" y="5" x="8.75" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
+        </svg>
+{#        <img id="add-slot" src="{{ url_for('static', filename='img/plus-icon.svg') }}">#}
+        <hr>
+        <form action = "{{ url_for('create_schedule') }}" method="POST" id = "schedule-form">
+
+        </form>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/schedule.js') }}"></script>
+{% endblock %}

@@ -6,15 +6,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <div class="order-0">
-                <a class="navbar-brand mx-auto" href="{{ url_for('index') }}">Stuyvesant Scheduling</a>
-            </div>
+        <nav class="navbar navbar-expand-md bg-primary">
+            <a class="navbar-brand mx-auto" href="{{ url_for('index') }}">Stuyvesant Scheduling</a>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
                     {% if session.get("user") == None %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/google/login">Login</a>
+                            <a class="nav-link" href="/google/login">
+                                <span>Google Login</span>
+                                <img class = "nav-google-logo" src = "{{ url_for('static', filename='img/google-icon.png') }}"/>
+                            </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
