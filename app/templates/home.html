@@ -4,6 +4,7 @@
 
  {% block content %}
      <div class = "row">
+       <!-- Creates table for schedule -->
         <div class = "col-lg-8 schedule-container">
             <h1 class = "schedule-title">Regular</h1>
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
@@ -21,14 +22,16 @@
                 <tr id="period11"><td align="center">After school</td><td>&nbsp;3:35p - 11:59p</td></tr>
             </table>
         </div>
-        <div class = "col-lg-4 time-left-container">
+	
+        <div class = "col-lg-3 time-left-container">
+	  <br><br><br><br><br><br><br>
             <table border="1" cellspacing="3" cellpadding="10" width="100%">
                 <tr>
                     <td width="50%" align="center" colspan="2"></td>
                 </tr>
                 <tr>
-                    <td width="50%" align="center"><div id = "minutes_into"></div></td>
-                    <td width="50%" align="center"><div id = "minutes_left"></div></td>
+                    <td width="50%" align="center"><font color="#008000"><div id = "minutes_into"></div></font></td>
+                    <td width="50%" align="center"><font color="#FF0000"><div id = "minutes_left"></div></font></td>
                 </tr>
                 <tr>
                     <td width="50%" align="center"><font size="1" face="Verdana">minutes into</font></td>

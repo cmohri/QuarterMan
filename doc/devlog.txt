@@ -64,10 +64,28 @@ with input
 Added nonfunctional dropdown (for later, to decide how many
 periods the user wants to create)
 ==============================================================
+damianW -- 2019-05-23 16:30
+--------------------------------------------------------------
+Made small changes with wtforms
+==============================================================
 aschJa -- 2019-05-26
 --------------------------------------------------------------
 Added OAuth integration with Google using loginpass, a library provided by authlib
 Reorganized file structure
 Slimmed down requirements.txt
 Refactored old code to use Jinja2 templating
+==============================================================
+damianW -- 2019-05-26 17:45
+--------------------------------------------------------------
+Commented all functions, clarified their purposes
+Removed unnecessary bootstrap file
+Commented out functions that we probably will not pursue (i.e,
+the drop down feature in the maketemplate page, since we
+will have a more dynamic way of letting users choose)
+Also added nonfunctional two-submit button so users can choose
+whether to public template to public or private gallery
+==============================================================
+aschJa -- 2019-05-26 21:43
+--------------------------------------------------------------
+Redesigned schedule creation page
 ==============================================================

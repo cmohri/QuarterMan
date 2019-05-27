@@ -1,4 +1,5 @@
 function startTime() {
+  //Function to receive current time
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
@@ -11,12 +12,18 @@ function startTime() {
 }
 
 function mins_into_left() {
+  //Function used to determine which period we are currently in and
+  //make that period appear red
     var today = new Date();
     var h = today.getHours();
     var m = today.getMinutes();
     var a; //minutes into
     var b; // minutes left
-    if (h == 8) {
+    if (h >= 0 && h < 8){
+	a = 3000;
+	b = 3000;
+	document.getElementById("period0").style.color = "red";
+    } else if (h == 8) {
         if (m <= 41) {
             a = m;
             b = 41 - m;
@@ -144,10 +151,12 @@ function mins_into_left() {
             a = 6 + m;
             b = 35 - m;
             document.getElementById("period10").style.color = "red";
-        } else {
-            a = 30000;
-            b = 30000;
-        }
+	}
+    } else {
+        a = 30000;
+	//console.log('else');
+        b = 30000;
+	document.getElementById("period11").style.color = "red";
     }
     if (a != 0) {
         a -= 1;
@@ -157,17 +166,20 @@ function mins_into_left() {
     }
 
     document.getElementById('minutes_into').innerHTML = checkTime(a);
+	//checkTime(a);
     document.getElementById('minutes_left').innerHTML = checkTime(b);
     var t = setTimeout(mins_into_left, 500);
     //return (a, b);
 }
 
 function all() {
+  //runs other functions
     startTime();
     mins_into_left();
 }
 
 function checkTime(i) {
+  //for consistency of time format
     if (i < 10) {
         i = "0" + i
     }
@@ -176,6 +188,7 @@ function checkTime(i) {
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
+  //adds to the DOM
     startTime();
     mins_into_left();
 });
