@@ -1,9 +1,10 @@
-from flask import render_template, url_for, redirect, flash, jsonify, session, request
+from flask import render_template, url_for, redirect, flash, session, request
 from os import urandom
+import json
 import datetime
 from config import Config
 from app import app, models, oauth, db
-from .forms import TemplateForm
+from .forms import TemplateForm, ScheduleForm
 
 from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
@@ -43,11 +44,16 @@ def logout():
     session.pop("user")
     return redirect(url_for("index"))
 
-@app.route("/schedules/create", methods=["GET"])
+@app.route("/schedules/create", methods=["GET", "POST"])
 def create_schedule():
     if session.get("user") is None:
         return redirect("/google/login")
-    return render_template("create_schedule.html")
+    schedule_form = ScheduleForm()
+    if request.method == "GET":
+        return render_template("create_schedule.html", schedule_form=schedule_form)
+    return request.form.get("schedule")
+
+
 
 
 @app.route('/maketemp', methods = ['GET', 'POST'])

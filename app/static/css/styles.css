@@ -58,6 +58,10 @@ body {
     right: 1em;
 }
 
+.create-schedule-container label {
+    color: #007bff;
+}
+
 .input-group-append {
     color: #007bff !important;
 }
@@ -68,6 +72,7 @@ body {
 
 .navbar .navbar-nav .nav-item .nav-link {
     color: white;
+    padding-left: 15px;
 }
 
 .navbar .navbar-nav .nav-item .nav-link .nav-google-logo {

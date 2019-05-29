@@ -12,8 +12,26 @@
 {#        <img id="add-slot" src="{{ url_for('static', filename='img/plus-icon.svg') }}">#}
         <hr>
         <form action = "{{ url_for('create_schedule') }}" method="POST" id = "schedule-form">
+            {{ schedule_form.hidden_tag() }}
+            {{ schedule_form.schedule(id="hidden-json") }}
 
+            <label>Schedule Title</label>
+            <div class = "input-group">
+                {{ schedule_form.title(class_="form-control", placeholder="A short, memorable title for your schedule") }}
+            </div>
+
+            <label style = "margin-top: 20px;">Schedule Description</label>
+            <div class="input-group">
+                {{ schedule_form.desc(class_="form-control", placeholder="A quick description of your schedule") }}
+            </div>
+
+{#            <div class="input-group" style = "margin-top: 20px;">#}
+{#                <label>Schedule Color Scheme</label>#}
+{#                {{ schedule_form.color(style="float: right; border: 0; height: 1.6em; max-width: 50px; padding: 0px 12px", class_="form-control", placeholder="A quick description of your schedule") }}#}
+{#            </div>#}
+            <hr>
         </form>
+        <button class = "btn btn-outline-primary" onclick="scheduleToJSON()">Create Schedule</button>
     </div>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/schedule.js') }}"></script>

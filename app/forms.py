@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, FieldList, FormField, BooleanField, HiddenField
 from wtforms.validators import DataRequired
 
 class TemplateForm(FlaskForm):
@@ -15,3 +15,9 @@ class TemplateForm(FlaskForm):
     p3time = StringField('Period 3 Time', validators=[DataRequired()])
     submitpriv = SubmitField('Add Template to Private Gallery')
     submitpub = SubmitField('Add Template to Public Gallery')
+
+class ScheduleForm(FlaskForm):
+    title = StringField("Schedule Name")
+    desc = StringField("Description")
+    schedule = HiddenField()
+    private = BooleanField("Private")

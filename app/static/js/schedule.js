@@ -38,3 +38,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
         addSlot();
     }
 });
+
+function scheduleToJSON(){
+    let schedule = [];
+    for(let group of document.getElementsByClassName("schedule-slot")){
+        let inputs = group.querySelectorAll("input");
+        if(!validateSlot(inputs[0].value, inputs[1].value, inputs[2].value)){
+            alert("Implement error message nicely");
+            return;
+        }
+        schedule.push({
+            "name": inputs[0].value,
+            "start": inputs[1].value,
+            "end": inputs[2].value
+        });
+    }
+    document.getElementById("hidden-json").value = JSON.stringify(schedule);
+    document.getElementById("schedule-form").submit();
+}
+
+function validateSlot(name, start, end){
+    return true;
+}
