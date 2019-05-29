@@ -51,7 +51,9 @@ def create_schedule():
     schedule_form = ScheduleForm()
     if request.method == "GET":
         return render_template("create_schedule.html", schedule_form=schedule_form)
-    return request.form.get("schedule")
+    else:
+        schedule = json.loads(request.form.get("schedule"))
+
 
 
 

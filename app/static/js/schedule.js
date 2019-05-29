@@ -1,11 +1,11 @@
 let inputTemplateGenerator = (slot_id) =>
     `<div class = "row">
         <div class = "input-group col-lg-11 schedule-slot">
-            <input name = "${slot_id}-name" class = "col-lg-8 col-md-6 form-control" placeholder="Schedule Slot Name"/>
+            <input class = "col-lg-8 col-md-6 form-control" placeholder="Schedule Slot Name"/>
             <span class = "input-group-append">Start Time: </span>
-            <input name = "${slot_id}-start" class = "col-lg-2 col-md-3 form-control" placeholder="24 hour time"/>
+            <input class = "col-lg-2 col-md-3 form-control" placeholder="24 hour time"/>
             <span class = "input-group-append">End Time: </span>
-            <input name = "${slot_id}-end" class = "col-lg-2 col-md-3 form-control" placeholder="24 hour time"/>
+            <input  class = "col-lg-2 col-md-3 form-control" placeholder="24 hour time"/>
         </div>
         <div class = "col-lg-1">
             <svg class = "remove-slot" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ function scheduleToJSON(){
             "end": inputs[2].value
         });
     }
-    document.getElementById("hidden-json").value = JSON.stringify(schedule);
+    document.getElementsByName("schedule")[0].value = JSON.stringify(schedule);
     document.getElementById("schedule-form").submit();
 }
 
