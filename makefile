@@ -4,7 +4,7 @@ run: app.db
 
 app.db: migrations
 	flask db upgrade
-	flask db migrate
+	flask db migrateh
 
 migrations:
 	flask db init
