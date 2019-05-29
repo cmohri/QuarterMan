@@ -38,7 +38,7 @@ For our final project, our group decided to try to create a version of the Bert 
 
 5. Run the app!
 
-```run```
+```make run```
 
 6. Navigate to [this link](http://127.0.0.1:500/). 
 
