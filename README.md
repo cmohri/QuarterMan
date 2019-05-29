@@ -44,6 +44,9 @@ For our final project, our group decided to try to create a version of the Bert 
 
 7. Enjoy!
 
+# API
+
+We did not use any API's, so there is no need to install anything.
 
 # Necessary Packages
 
