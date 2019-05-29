@@ -1,5 +1,5 @@
 # QuarterMan
-![QuarterMan Team Picture](https://imgur.com/a/6MBQmc3)
+
 # Roster: Amit Narang (PMAN), Jared Asch, Damian Wasilewicz, & Clara Mohri
 
 # Watch our demo video here! (Currently not available)
