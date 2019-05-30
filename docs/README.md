@@ -106,6 +106,6 @@ We did not use any API's, so there is no need to install anything.
 - *WTForms* is a form validation library that we used to build our schedule templating form. We used *Flask-WTF* to ease our tying-in of *WTForms* into our Flask app.
 
 * These are all included in our requirements.txt file, and can be installed with
-```pip3 install -r docrequirements.txt```
+```pip3 install -r doc/requirements.txt```
 
 
