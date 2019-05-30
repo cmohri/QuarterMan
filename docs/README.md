@@ -1,6 +1,7 @@
 # QuarterMan
 
-# Roster: Amit Narang (PMAN), Jared Asch, Damian Wasilewicz, & Clara Mohri
+# Roster
+## Amit Narang (PMAN), Jared Asch, Damian Wasilewicz, & Clara Mohri
 
 # Watch our demo video here! (Currently not available)
 
@@ -46,6 +47,48 @@ For our final project, our group decided to try to create a version of the Bert 
 
 ## On a server
 
+1. Once you are inside your droplet, navigate to the correct directory. 
+
+```mv /var/www/```
+
+2. Clone our repository. 
+
+```git clone https://github.com/narang-amit/QuarterMan.git```
+
+3. Navigate to the correct directory.
+
+```mv QuarterMan/elbarto```
+
+4. Install the capability to create a virtual environment and then create a virtual environment. Replace name_of_environment with the desired name of your virtual environment.
+
+- If you're using Python3 or higher:
+```python3 -m venv name_of_environment```
+- If you're using Python2: 
+```pip install virtualenv```
+```virtualenv name_of_environment```
+
+6. Activate your virtual environment. 
+
+``` . ~/name_of_environment/bin/activate```
+
+7. Navigate to the correct directory. 
+
+```mv ../```
+
+7. Install the project's dependencies.
+
+```pip install -r /doc/requirements.txt```
+
+3. Copy the name of the server you wish to put our project on. One way you could do so is by running the following command, which will return the server name.
+
+```curl http://icanhazip.com```
+
+4. Insert the server name and the email address you wish people to contact you on in the elbarto.conf file. 
+
+```ServerName name_of_server```
+```ServerAdmin email_to_contact```
+
+5. Navigate to your server on your browser. You should be good to go. 
 
 # API
 
