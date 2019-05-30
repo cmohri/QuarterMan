@@ -96,4 +96,16 @@ We did not use any API's, so there is no need to install anything.
 
 # Necessary Packages
 
-* 
+* **Authlib / loginpass **
+- We used *Authlib* as our secure means of implementing OAuth2 protocol. *loginpass* is a simplel wrapper around Authlib that eases its integration into our Flask app.
+
+* **Flask-SQLAlchemy / SQLAlchemy**
+- *SQLAlchemy* is an Object Relational Mapper that considers the database as a relational algebra engine, not just a collection of tables, which makes it useful now that more abstraction starts to matter. *Flask-SQLAlchemy* is a Flask extension that addds support for SQLAlchemy in our app. 
+
+* **Flask-WTF / WTForms**
+- *WTForms* is a form validation library that we used to build our schedule templating form. We used *Flask-WTF* to ease our tying-in of *WTForms* into our Flask app.
+
+* These are all included in our requirements.txt file, and can be installed with
+```pip3 install -r docrequirements.txt```
+
+
