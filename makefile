@@ -1,5 +1,5 @@
 run: app.db
-	export FLASK_APP=run.py
+	export FLASK_APP=elbarto/run.py
 	flask run
 
 app.db: migrations

@@ -16,4 +16,4 @@ oauth = OAuth(app)
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-from app import routes, models, db
+from elbarto import routes, models, db
