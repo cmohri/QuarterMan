@@ -98,6 +98,11 @@ def template():
     form = TemplateForm()
     return render_template('template.html', form = form)
 
-@app.route("/gallery")
-def showgal():
-    return render_template("lib.html")
+@app.route("/schedules/browse")
+def gallery():
+        '''Displays gallery of created templates'''
+        # get list of all templates please
+        # create list:  (next line)
+        schedules = models.Schedule.query.all()
+        # pass it as an argument
+        return render_template("lib.html", schedules=schedules) # needs to take into
