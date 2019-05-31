@@ -93,3 +93,8 @@ narangAm -- 2019-05-29 22:55
 --------------------------------------------------------------
 Updated README with running instructions, overview, and API information
 ==============================================================
+damianW -- 2019-05-30 23:02
+--------------------------------------------------------------
+Worked with Jared and Clara to attempt to get galleries working
+Bugs with atom and templates not appearing, will debug soon
+==============================================================
