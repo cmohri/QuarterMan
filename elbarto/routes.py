@@ -9,7 +9,7 @@ from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
 from loginpass.google import Google
 
-
+# oath stuff
 def handle_authorize(remote, token, user_info):
     ''' Handles authentication of user information '''
     q = models.User.query.filter_by(email=user_info.email)
@@ -95,3 +95,7 @@ def template():
     '''Loads up the template created in maketemp '''
     form = TemplateForm()
     return render_template('template.html', form = form)
+
+@app.route("/gallery")
+def showgal():
+    return render_template("lib.html")

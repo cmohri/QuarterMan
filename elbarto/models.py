@@ -12,6 +12,7 @@ class User(db.Model):
     def __repr__(self):
         return "<%s %s %s>" % (self.first_name, self.last_name, self.email)
 
+# basically nodes in linked list of Schedule
 class ScheduleSlot(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
