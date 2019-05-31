@@ -29,10 +29,10 @@ def handle_authorize(remote, token, user_info):
     return redirect(url_for("index"))
 
 def time_to_int(t):
-    return t.hours * 3600 + t.minutes * 60 + t.seconds
+    return t.hour * 3600 + t.minute * 60 + t.second
 
 def int_to_time(i):
-    return datetime.time(int(i / 3600), int(i / 60) % 60, i)
+    return datetime.time(int(i / 3600), int((i % 3600 )/ 60) % 60, i / 60)
 
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
 app.register_blueprint(blueprint, url_prefix='/google')
@@ -62,21 +62,23 @@ def create_schedule():
         prev_node = None
         new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"))
         for slot in schedule:
-            start = datetime.datetime.strptime(slot["start"], '%H:%M').time()
-            end = datetime.datetime.strptime(slot["end"], '%H:%M').time()
+            start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
+            end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
 
             slot_node = models.ScheduleSlot(name=slot["name"], start=start, end=end)
+            db.session.add(slot_node)
+            db.session.commit()
             if prev_node is not None:
-                if slot_node.start > prev_node.end:
+                if slot_node.start < prev_node.end:
                     return "Error - Make sense please"
-                prev_node.next = slot_node
-                prev_node = slot_node
+                prev_node.next = slot_node.id
                 db.session.add(prev_node)
             else:
-                new_schedule.head = slot_node.id
-            db.session.add(slot_node)
+                new_schedule.head_slot = slot_node.id
+            prev_node = slot_node
         db.session.add(new_schedule)
         db.session.commit()
+        return "Success!"
 
 
 
