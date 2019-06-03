@@ -60,7 +60,9 @@ def create_schedule():
         schedule = json.loads(request.form.get("schedule"))
 
         prev_node = None
-        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"))
+        val = request.form.get("private")
+        b = (val == "y")
+        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=b)
         for slot in schedule:
             start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
             end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
@@ -98,11 +100,23 @@ def template():
     form = TemplateForm()
     return render_template('template.html', form = form)
 
-@app.route("/schedules/browse")
+@app.route("/schedules/public/browse")
 def gallery():
-        '''Displays gallery of created templates'''
-        # get list of all templates please
-        # create list:  (next line)
-        schedules = models.Schedule.query.all()
-        # pass it as an argument
-        return render_template("lib.html", schedules=schedules) # needs to take into
+    '''Displays gallery of created templates'''
+    # get list of all templates please
+    # create list:  (next line)
+    schedules = models.Schedule.query.filter_by(private = False).all()
+    print(schedules)
+    # pass it as an argument
+
+    return render_template("lib.html", schedules = schedules)
+
+'''
+@app.route("/display/<int:id>")
+def display_id(id):
+    
+'''
+
+#return str(schedules)
+
+

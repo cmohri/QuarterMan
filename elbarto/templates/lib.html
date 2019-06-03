@@ -7,16 +7,20 @@
 <div class="container create-schedule-container">
   <h1>Library</h1>
 
-  <h2>Private Templates</h2>
+  <h2>Public Templates</h2>
 
 <div class="flex-row">
 
-    {% for schedule in schedule %}
-        {{ schedule.name }}
-        {{ schedule.desc }}
-    {% endfor %}
+  {% for schedule in schedules %}
 
-  <h2>Public Templates</h2>
+  <figure class="figure">
+      <a href="">
+	{{schedule.name }}
+        <figcaption class="figure-caption figure-caption-title">{{schedule.desc}}</figcaption>
+      </a>
+    </figure>
+  
+    {% endfor %}
 
 </div>
 

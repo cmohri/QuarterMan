@@ -25,3 +25,4 @@ class Schedule(db.Model):
     name = db.Column(db.String)
     desc = db.Column(db.String)
     head_slot = db.Column(db.Integer) # stores id of head of schedule slot linked list
+    private = db.Column(db.Boolean)
