@@ -8,6 +8,7 @@ class User(db.Model):
     first_name = db.Column(db.String(128), index=True)
     last_name = db.Column(db.String(128), index=True)
     email = db.Column(db.String(128), index=True, unique=True)
+    schedules = db.relationship("Schedle")
 
     def __repr__(self):
         return "<%s %s %s>" % (self.first_name, self.last_name, self.email)
@@ -20,8 +21,10 @@ class ScheduleSlot(db.Model):
     end = db.Column(db.Integer)
     next = db.Column(db.Integer)  # stores id of next slot in schedule
 
+
 class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer, ForeignKey('user.id'))
     name = db.Column(db.String)
     desc = db.Column(db.String)
     head_slot = db.Column(db.Integer) # stores id of head of schedule slot linked list

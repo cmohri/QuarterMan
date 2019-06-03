@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, flash, session, request
 from os import urandom
-import json
+import json, csv
 import datetime
 from elbarto import app, models, oauth, db
 from .forms import TemplateForm, ScheduleForm
@@ -37,17 +37,36 @@ def int_to_time(i):
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
 app.register_blueprint(blueprint, url_prefix='/google')
 
+def load_schedule():
+    schedule = {}
+    with open('schedules.csv', newline='\n') as f:
+        reader = csv.reader(f, delimiter=',', quotechar='"')
+        for day in reader:
+            schedule[day[0]] = {
+                "template": day[1],
+                "day_type": day[2]
+            }
+            if models.Schedule.query.filter_by(name=day[2]).count() == 0:
+                print("Schedule %s was not found, please add it and restart the server" % day[2])
+    return schedule
+
+daily_schedule = load_schedule()
+
 
 @app.route("/")
 def index():
-    ''' Home route, loads standard schedule page on schedule '''
-    return render_template("home.html")
+    date = datetime.date.today().strftime("%m-%d-%Y")
+    schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get("date") else "Regular"
+    schedule = models.Schedule.query.filter_by(name=schedule_name).one()
+    return "We lit"
+
 
 @app.route("/logout", methods = ["GET"])
 def logout():
     ''' Logs the user out, removing them from the current session '''
     session.pop("user")
     return redirect(url_for("index"))
+
 
 @app.route("/schedules/create", methods=["GET", "POST"])
 def create_schedule():
@@ -60,7 +79,7 @@ def create_schedule():
         schedule = json.loads(request.form.get("schedule"))
 
         prev_node = None
-        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"))
+        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), author_id=session.get("user").id)
         for slot in schedule:
             start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
             end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
@@ -80,23 +99,6 @@ def create_schedule():
         db.session.commit()
         return "Success!"
 
-
-
-
-@app.route('/maketemp', methods = ['GET', 'POST'])
-def maketemp():
-    '''creates template for either public or private gallery use. Makes use
-    of the TemplateForm object, which is created in forms.py and imported '''
-    form = TemplateForm()
-    if form.validate_on_submit():
-        return render_template('template.html', form = form)
-    return render_template('maketemp.html', title='Create Template Schedule', form=form)
-
-@app.route("/template", methods = ['GET', 'POST'])
-def template():
-    '''Loads up the template created in maketemp '''
-    form = TemplateForm()
-    return render_template('template.html', form = form)
 
 @app.route("/schedules/browse")
 def gallery():
