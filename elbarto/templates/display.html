@@ -8,7 +8,10 @@
         <div class = "col-lg-8 schedule-container">
             <h1 class = "schedule-title">Regular</h1>
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
-                <tr id="period0"><td align="center">Before school</td><td>&nbsp;12:00a - 8:00a</td></tr>
+	      
+	      {%for i in {{schedule}} %}
+
+	      <tr id="period0"><td align="center">Before school</td><td>&nbsp;12:00a - 8:00a</td></tr>
                 <tr id="period1"><td align="center">Period 1</td><td>&nbsp;8:00a - 8:41a</td></tr>
                 <tr id="period2"><td align="center">Period 2</td><td>&nbsp;8:45a - 9:26a</td></tr>
                 <tr id="period3"><td align="center">Period 3</td><td>&nbsp;9:31a - 10:15a</td></tr>
