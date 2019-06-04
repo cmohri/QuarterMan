@@ -108,14 +108,30 @@ def gallery():
     schedules = models.Schedule.query.filter_by(private = False).all()
     print(schedules)
     # pass it as an argument
-
     return render_template("lib.html", schedules = schedules)
 
-'''
-@app.route("/display/<int:id>")
-def display_id(id):
+
+@app.route("/display/<int:idnum>")
+def display_id(idnum):
+    l = models.Schedule.query.filter_by(id = idnum).all()
+    h = l[0].head_slot
+    print ("head slot: " + str(h))
+    print (models.ScheduleSlot.query.filter_by(id = h).one())
+    curr = models.ScheduleSlot.query.filter_by(id = h).one()
+    l_times = []
+    l_times.append([curr.start, curr.end])
     
-'''
+    while (curr.next != -1 and curr.next != None):
+        curr = models.ScheduleSlot.query.filter_by(id = curr.next).one()
+        l_times.append([curr.start, curr.end])
+    print(l_times)
+    #clock = [int_to_time(i) for i in l_times]
+    #print(clock)
+    
+    return "success"
+    #return models.ScheduleSlot.query.filter_by(id = idnum).all()
+
+
 
 #return str(schedules)
 

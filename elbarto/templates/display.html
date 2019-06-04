@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+ {% block title %} {% endblock %}
+
+ {% block content %}
+     <div class = "row">
+       <!-- Creates table for schedule -->
+        <div class = "col-lg-8 schedule-container">
+            <h1 class = "schedule-title">Regular</h1>
+            <table class = "schedule-table" border="1" width="100%" cellspacing="3">
+                <tr id="period0"><td align="center">Before school</td><td>&nbsp;12:00a - 8:00a</td></tr>
+                <tr id="period1"><td align="center">Period 1</td><td>&nbsp;8:00a - 8:41a</td></tr>
+                <tr id="period2"><td align="center">Period 2</td><td>&nbsp;8:45a - 9:26a</td></tr>
+                <tr id="period3"><td align="center">Period 3</td><td>&nbsp;9:31a - 10:15a</td></tr>
+                <tr id="period4"><td align="center">Period 4</td><td>&nbsp;10:20a - 11:01a</td></tr>
+                <tr id="period5"><td align="center">Period 5</td><td>&nbsp;11:06a - 11:47a</td></tr>
+                <tr id="period6"><td align="center">Period 6</td><td>&nbsp;11:52a - 12:33p</td></tr>
+                <tr id="period7"><td align="center">Period 7</td><td>&nbsp;12:38p - 1:19p</td></tr>
+                <tr id="period8"><td align="center">Period 8</td><td>&nbsp;1:24p - 2:05p</td></tr>
+                <tr id="period9"><td align="center">Period 9</td><td>&nbsp;2:09p - 2:50p</td></tr>
+                <tr id="period10"><td align="center">Perilod 10</td><td>&nbsp;2:54p - 3:35p</td></tr>
+                <tr id="period11"><td align="center">After school</td><td>&nbsp;3:35p - 11:59p</td></tr>
+            </table>
+        </div>
+	
+        <div class = "col-lg-3 time-left-container">
+	  <br><br><br><br><br><br>
+	  <h1 class = "schedule-title">Current Time</h1>
+            <table border="1" cellspacing="3" cellpadding="10" width="100%">
+	      <tr>
+                    <td width="50%" align="center"><font color="#008000" size="10" ><div id = "minutes_into"></div></font></td>
+                    <td width="50%" align="center"><font color="#FF0000" size="10"><div id = "minutes_left"></div></font></td>
+                </tr>
+                <tr>
+                    <td width="50%" align="center"><font size="2" face="Verdana"><b>minutes into</b></font></td>
+                    <td width="50%" align="center"><font size="2" face="Verdana"><b>minutes left</b></font></td>
+                </tr>
+                <tr>
+		  <td width="100%" align="center" colspan="2"><font size ="6"><div id = "txt"></div></font></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+     <div>
+        <footer class="page-footer bg-dark">
+            <div class="footer-copyright text-center py-3 text-white">© 2019 Quarterman</div>
+        </footer>
+    </div>
+    <script type="text/javascript" src = "{{ url_for('static', filename='js/source.js') }}" onload="all()"></script>
+{% endblock %}
