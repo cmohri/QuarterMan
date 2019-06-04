@@ -6,23 +6,16 @@
      <div class = "row">
        <!-- Creates table for schedule -->
         <div class = "col-lg-8 schedule-container">
-            <h1 class = "schedule-title">Regular</h1>
+            <h1 class = "schedule-title">{{name}}</h1>
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
 	      
-	      {%for i in {{schedule}} %}
+	      
+	      {%for i in schedule %}
+	      
+	      <tr id = "{{schedule[2]}}"><td align="center"> {{i[2]}}</td><td>&nbsp;{{i[0]}} - {{i[1]}}</td></tr>
 
-	      <tr id="period0"><td align="center">Before school</td><td>&nbsp;12:00a - 8:00a</td></tr>
-                <tr id="period1"><td align="center">Period 1</td><td>&nbsp;8:00a - 8:41a</td></tr>
-                <tr id="period2"><td align="center">Period 2</td><td>&nbsp;8:45a - 9:26a</td></tr>
-                <tr id="period3"><td align="center">Period 3</td><td>&nbsp;9:31a - 10:15a</td></tr>
-                <tr id="period4"><td align="center">Period 4</td><td>&nbsp;10:20a - 11:01a</td></tr>
-                <tr id="period5"><td align="center">Period 5</td><td>&nbsp;11:06a - 11:47a</td></tr>
-                <tr id="period6"><td align="center">Period 6</td><td>&nbsp;11:52a - 12:33p</td></tr>
-                <tr id="period7"><td align="center">Period 7</td><td>&nbsp;12:38p - 1:19p</td></tr>
-                <tr id="period8"><td align="center">Period 8</td><td>&nbsp;1:24p - 2:05p</td></tr>
-                <tr id="period9"><td align="center">Period 9</td><td>&nbsp;2:09p - 2:50p</td></tr>
-                <tr id="period10"><td align="center">Perilod 10</td><td>&nbsp;2:54p - 3:35p</td></tr>
-                <tr id="period11"><td align="center">After school</td><td>&nbsp;3:35p - 11:59p</td></tr>
+             {%endfor%}
+
             </table>
         </div>
 	
@@ -49,5 +42,5 @@
             <div class="footer-copyright text-center py-3 text-white">© 2019 Quarterman</div>
         </footer>
     </div>
-    <script type="text/javascript" src = "{{ url_for('static', filename='js/source.js') }}" onload="all()"></script>
+    <script type="text/javascript" src = "{{ url_for('static', filename='js/display.js') }}" onload="all({{schedule}})"></script>
 {% endblock %}
