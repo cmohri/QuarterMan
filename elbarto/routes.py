@@ -32,9 +32,9 @@ def time_to_int(t):
     return t.hour * 3600 + t.minute * 60 + t.second
 
 def int_to_time(i):
-    #h = int(i/3600)
+    return datetime.time( int(i / 3600), int(( (i % 3600 )/ 60) % 60), 0)
 
-    return datetime.time(int(i / 3600), int(( (i % 3600 )/ 60) % 60), 0)
+app.jinja_env.filters['int_to_time'] = int_to_time
 
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
 app.register_blueprint(blueprint, url_prefix='/google')
@@ -45,7 +45,7 @@ def load_schedules():
         reader = csv.reader(f, delimiter=',', quotechar='"')
         for day in reader:
             schedule[day[0]] = {
-                "template": day[1],
+                "A_or_B": day[1],
                 "day_type": day[2]
             }
     for filename in listdir("schedules"):
@@ -85,18 +85,16 @@ def load_schedule(filename):
         db.session.add(new_schedule)
         db.session.commit()
 
-
-
 daily_schedule = load_schedules()
-print(daily_schedule)
 
 
 @app.route("/")
 def index():
     date = datetime.date.today().strftime("%m-%d-%Y")
     schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get(date) else "Regular"
+    day_type = daily_schedule[date]["A_or_B"] if daily_schedule.get(date) else ""
     schedule = models.Schedule.query.filter_by(name=schedule_name).one()
-    return redirect(url_for("display_schedule", id=schedule.id))
+    return redirect(url_for("display_schedule", id=schedule.id, day_type=day_type))
 
 
 @app.route("/logout", methods = ["GET"])
@@ -153,7 +151,6 @@ def public_gallery():
     # get list of all templates please
     # create list:  (next line)
     schedules = models.Schedule.query.filter_by(private = False).all()
-    print(schedules)
     # pass it as an argument
     return render_template("lib.html", schedules = schedules)
 
@@ -174,4 +171,4 @@ def display_schedule(id):
     while curr.next != -1:
         curr = models.ScheduleSlot.query.filter_by(id = curr.next).one()
         schedule_slots.append(generate_slot_dict(curr))
-    return render_template("display.html", schedule = schedule_slots, name = schedule.name)
+    return render_template("display.html", schedule = schedule_slots, name = schedule.name, day_type=request.args.get("day_type"))

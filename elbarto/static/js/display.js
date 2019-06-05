@@ -1,51 +1,29 @@
-function startTime() {
-  //Function to receive current time
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-        h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
-}
-
-function mins_into_left(sched) {
-  //Function used to determine which period we are currently in and
-  //make that period appear red
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var a; //minutes into
-    var b; // minutes left
-    console.log(sched);
-}
-
-function all(sched) {
-  //runs other functions
-    console.log(sched);
-    startTime();
-
-    mins_into_left(sched);
-}
-
-function checkTime(i) {
-  //for consistency of time format
-    if (i < 10) {
-        i = "0" + i
+function timeString(time){
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time - hours * 3600) / 60);
+    let seconds = time % 60;
+    if(seconds > 10){
+        return hours % 12 + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
     }
-    ;  // add zero in front of numbers < 10
-    return i;
 }
 
-function timeInSeconds(){
-    var today = new Date();
-    return today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+function timeLoop(time, schedule){
+    // Update the clock
+    timeText = document.getElementById("time");
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time - hours * 3600) / 60);
+    let seconds = time % 60;
+    timeText.innerHTML = timeString(time);
+    // Highlight period
+    let period = 0;
+    while(period < schedule.length && schedule[period].start < time){
+        period += 1;
+    }
+    // Show minutes into/left
+    setTimeout(timeLoop, 1000, time + 1, schedule);
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
-  //adds to the DOM
-    startTime();
-    mins_into_left();
-});
+function initialize(schedule){
+    let t = new Date()
+    timeLoop(t.getHours() * 3600 + t.getMinutes() * 60 + t.getSeconds(), schedule);
+}

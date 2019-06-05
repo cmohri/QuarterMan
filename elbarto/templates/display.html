@@ -6,12 +6,12 @@
      <div class = "row">
        <!-- Creates table for schedule -->
         <div class = "col-lg-8 schedule-container">
-            <h1 class = "schedule-title">{{ name }}</h1>
+            <h1 class = "schedule-title">{{ day_type }} {{ name }} Day</h1>
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
 
 
 	      {% for i in range(schedule|length) %}
-            <tr id = "slot-{{ i }}"><td align="center"> {{ schedule[i].name }} </td><td>&nbsp;{{ schedule[i].start }} - {{ schedule[i].end }}</td></tr>
+            <tr id = "slot-{{ i }}"><td align="center"> {{ schedule[i].name }} </td><td>&nbsp;{{ (schedule[i].start|int_to_time).strftime('%I:%M %p') }} - {{ (schedule[i].end|int_to_time).strftime('%I:%M %p') }}</td></tr>
           {% endfor %}
 
             </table>
@@ -30,7 +30,7 @@
                     <td width="50%" align="center"><font size="2" face="Verdana"><b>minutes left</b></font></td>
                 </tr>
                 <tr>
-		  <td width="100%" align="center" colspan="2"><font size ="6"><div id = "txt"></div></font></td>
+		  <td width="100%" align="center" colspan="2"><font size ="6"><div id = "time"></div></font></td>
                 </tr>
             </table>
         </div>
