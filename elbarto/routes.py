@@ -123,29 +123,18 @@ def public_gallery():
 
 @app.route("/schedules/<int:id>")
 def display_schedule(id):
-    l = models.Schedule.query.filter_by(id = id).all()
-    h = l[0].head_slot
-    title = l[0].name
-    # print("title")
-    # print ("head slot: " + str(h))
-    # print (models.ScheduleSlot.query.filter_by(id = h).one())
-    curr = models.ScheduleSlot.query.filter_by(id = h).one()
-    l_times = []
-    l_times.append([curr.start, curr.end, curr.name])
+    def generate_slot_dict(slot):
+        return {
+            "start": slot.start,
+            "end": slot.end,
+            "name": slot.name
+        }
 
-    while (curr.next != -1 and curr.next != None):
-        #print(int_to_time(curr.start))
+    schedule = models.Schedule.query.filter_by(id = id).one()
+    curr = models.ScheduleSlot.query.filter_by(id = schedule.head_slot).one()
+
+    schedule_slots = [generate_slot_dict(curr)]
+    while curr.next != -1:
         curr = models.ScheduleSlot.query.filter_by(id = curr.next).one()
-
-        l_times.append([curr.start, curr.end, curr.name])
-
-    #clock = [int_to_time(i) for i in l_times]
-    #print(clock)
-    return render_template("display.html", schedule = l_times, name = title)
-    return "success"
-
-    #return models.ScheduleSlot.query.filter_by(id = idnum).all()
-
-
-
-#return str(schedules)
+        schedule_slots.append(generate_slot_dict(curr))
+    return render_template("display.html", schedule = schedule_slots, name = schedule.name)

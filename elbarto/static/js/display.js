@@ -20,13 +20,11 @@ function mins_into_left(sched) {
     var a; //minutes into
     var b; // minutes left
     console.log(sched);
-    
-    
 }
 
 function all(sched) {
   //runs other functions
-    console.log("what");
+    console.log(sched);
     startTime();
 
     mins_into_left(sched);

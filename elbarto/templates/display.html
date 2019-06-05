@@ -8,17 +8,15 @@
         <div class = "col-lg-8 schedule-container">
             <h1 class = "schedule-title">{{name}}</h1>
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
-	      
-	      
-	      {%for i in schedule %}
-	      
-	      <tr id = "{{schedule[2]}}"><td align="center"> {{i[2]}}</td><td>&nbsp;{{i[0]}} - {{i[1]}}</td></tr>
 
-             {%endfor%}
+
+	      {% for i in range(schedule|length) %}
+            <tr id = "slot-{{ i }}"><td align="center"> {{ schedule[i].name }} </td><td>&nbsp;{{ schedule[i].start }} - {{ schedule[i].end }}</td></tr>
+          {% endfor %}
 
             </table>
         </div>
-	
+
         <div class = "col-lg-3 time-left-container">
 	  <br><br><br><br><br><br>
 	  <h1 class = "schedule-title">Current Time</h1>
@@ -42,5 +40,14 @@
             <div class="footer-copyright text-center py-3 text-white">© 2019 Quarterman</div>
         </footer>
     </div>
-    <script type="text/javascript" src = "{{ url_for('static', filename='js/display.js') }}" onload="all({{schedule}})"></script>
+
+    <script type="text/javascript">
+        schedule = {{ schedule|safe }};
+        console.log(schedule)
+
+        function timeInSeconds(){
+            var today = new Date();
+            return today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+        }
+    </script>
 {% endblock %}
