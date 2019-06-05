@@ -1,10 +1,13 @@
-run: app.db
+run: elbarto/app.db
 	export FLASK_APP=elbarto/run.py
-	flask run
-
-app.db: migrations
 	flask db upgrade
 	flask db migrate
+	flask run
 
-migrations:
+clean:
+	rm -rf migrations
+	rm elbarto/app.db
+	flask db init
+
+elbarto/app.db:
 	flask db init

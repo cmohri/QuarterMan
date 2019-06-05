@@ -39,6 +39,11 @@ function checkTime(i) {
     return i;
 }
 
+function timeInSeconds(){
+    var today = new Date();
+    return today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
   //adds to the DOM
     startTime();

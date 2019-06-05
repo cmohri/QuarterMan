@@ -43,11 +43,10 @@
 
     <script type="text/javascript">
         schedule = {{ schedule|safe }};
-        console.log(schedule)
-
-        function timeInSeconds(){
-            var today = new Date();
-            return today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
-        }
+        document.addEventListener("DOMContentLoaded", function(e){
+            initialize(schedule);
+        })
     </script>
+    <script type="text/javascript" src = "{{ url_for('static', filename='js/display.js') }}"></script>
+
 {% endblock %}
