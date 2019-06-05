@@ -32,7 +32,9 @@ def time_to_int(t):
     return t.hour * 3600 + t.minute * 60 + t.second
 
 def int_to_time(i):
-    return datetime.time(int(i / 3600), int((i % 3600 )/ 60) % 60, i / 60)
+    #h = int(i/3600)
+
+    return datetime.time(int(i / 3600), int(( (i % 3600 )/ 60) % 60), 0)
 
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
 app.register_blueprint(blueprint, url_prefix='/google')
@@ -111,13 +113,34 @@ def gallery():
     schedules = models.Schedule.query.filter_by(private = False).all()
     print(schedules)
     # pass it as an argument
-
     return render_template("lib.html", schedules = schedules)
 
-'''
-@app.route("/display/<int:id>")
-def display_id(id):
 
-'''
+@app.route("/display/<int:idnum>")
+def display_id(idnum):
+    l = models.Schedule.query.filter_by(id = idnum).all()
+    h = l[0].head_slot
+    title = l[0].name
+    print("title")
+    print ("head slot: " + str(h))
+    print (models.ScheduleSlot.query.filter_by(id = h).one())
+    curr = models.ScheduleSlot.query.filter_by(id = h).one()
+    l_times = []
+    l_times.append([curr.start, curr.end, curr.name])
+
+    while (curr.next != -1 and curr.next != None):
+        #print(int_to_time(curr.start))
+        curr = models.ScheduleSlot.query.filter_by(id = curr.next).one()
+
+        l_times.append([curr.start, curr.end, curr.name])
+
+    #clock = [int_to_time(i) for i in l_times]
+    #print(clock)
+    return render_template("display.html", schedule = l_times, name = title)
+    return "success"
+
+    #return models.ScheduleSlot.query.filter_by(id = idnum).all()
+
+
 
 #return str(schedules)

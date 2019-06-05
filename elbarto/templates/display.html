@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+ {% block title %} {% endblock %}
+
+ {% block content %}
+     <div class = "row">
+       <!-- Creates table for schedule -->
+        <div class = "col-lg-8 schedule-container">
+            <h1 class = "schedule-title">{{name}}</h1>
+            <table class = "schedule-table" border="1" width="100%" cellspacing="3">
+	      
+	      
+	      {%for i in schedule %}
+	      
+	      <tr id = "{{schedule[2]}}"><td align="center"> {{i[2]}}</td><td>&nbsp;{{i[0]}} - {{i[1]}}</td></tr>
+
+             {%endfor%}
+
+            </table>
+        </div>
+	
+        <div class = "col-lg-3 time-left-container">
+	  <br><br><br><br><br><br>
+	  <h1 class = "schedule-title">Current Time</h1>
+            <table border="1" cellspacing="3" cellpadding="10" width="100%">
+	      <tr>
+                    <td width="50%" align="center"><font color="#008000" size="10" ><div id = "minutes_into"></div></font></td>
+                    <td width="50%" align="center"><font color="#FF0000" size="10"><div id = "minutes_left"></div></font></td>
+                </tr>
+                <tr>
+                    <td width="50%" align="center"><font size="2" face="Verdana"><b>minutes into</b></font></td>
+                    <td width="50%" align="center"><font size="2" face="Verdana"><b>minutes left</b></font></td>
+                </tr>
+                <tr>
+		  <td width="100%" align="center" colspan="2"><font size ="6"><div id = "txt"></div></font></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+     <div>
+        <footer class="page-footer bg-dark">
+            <div class="footer-copyright text-center py-3 text-white">© 2019 Quarterman</div>
+        </footer>
+    </div>
+    <script type="text/javascript" src = "{{ url_for('static', filename='js/display.js') }}" onload="all({{schedule}})"></script>
+{% endblock %}
