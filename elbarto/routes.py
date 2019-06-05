@@ -59,7 +59,7 @@ def index():
     date = datetime.date.today().strftime("%m-%d-%Y")
     schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get("date") else "Regular"
     schedule = models.Schedule.query.filter_by(name=schedule_name).one()
-    return "We lit"
+    return redirect(url_for("display_schedule", id=schedule.id))
 
 
 @app.route("/logout", methods = ["GET"])
@@ -81,7 +81,7 @@ def create_schedule():
         prev_node = None
 
         is_private = request.form.get("private") == "y"
-        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=is_private, author_id=session.get("user").id)
+        new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=is_private, author_id=session.get("user").get("id"))
         for slot in schedule:
             start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
             end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
@@ -101,12 +101,17 @@ def create_schedule():
         db.session.add(prev_node)
         db.session.add(new_schedule)
         db.session.commit()
-        return "Success!"
+        return redirect(url_for("display_schedule", id=new_schedule.id))
 
 
+@app.route("/schedules/mine")
+def private_gallery():
+    schedules = models.Schedule.query.filter_by(author_id=session.get("user").get("id")).all()
+    return render_template("lib.html", schedules=schedules)
 
-@app.route("/schedules/public/browse")
-def gallery():
+
+@app.route("/schedules/browse")
+def public_gallery():
     '''Displays gallery of created templates'''
     # get list of all templates please
     # create list:  (next line)
@@ -116,14 +121,14 @@ def gallery():
     return render_template("lib.html", schedules = schedules)
 
 
-@app.route("/display/<int:idnum>")
-def display_id(idnum):
-    l = models.Schedule.query.filter_by(id = idnum).all()
+@app.route("/schedules/<int:id>")
+def display_schedule(id):
+    l = models.Schedule.query.filter_by(id = id).all()
     h = l[0].head_slot
     title = l[0].name
-    print("title")
-    print ("head slot: " + str(h))
-    print (models.ScheduleSlot.query.filter_by(id = h).one())
+    # print("title")
+    # print ("head slot: " + str(h))
+    # print (models.ScheduleSlot.query.filter_by(id = h).one())
     curr = models.ScheduleSlot.query.filter_by(id = h).one()
     l_times = []
     l_times.append([curr.start, curr.end, curr.name])

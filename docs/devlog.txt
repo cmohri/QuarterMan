@@ -98,3 +98,9 @@ damianW -- 2019-05-30 23:02
 Worked with Jared and Clara to attempt to get galleries working
 Bugs with atom and templates not appearing, will debug soon
 ==============================================================
+aschJa -- 2019-06-03 23:45
+--------------------------------------------------------------
+Added links to galleries
+Can load day types from csv file
+Home page renders schedule for appropriate day
+==============================================================
