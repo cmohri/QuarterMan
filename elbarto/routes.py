@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect, flash, session, request
-from os import urandom
+from os import urandom, listdir, path
 import json, csv
 import datetime
 from elbarto import app, models, oauth, db
@@ -39,25 +39,62 @@ def int_to_time(i):
 blueprint = create_flask_blueprint(Google, oauth, handle_authorize)
 app.register_blueprint(blueprint, url_prefix='/google')
 
-def load_schedule():
+def load_schedules():
     schedule = {}
     with open('schedules.csv', newline='\n') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
         for day in reader:
-
             schedule[day[0]] = {
                 "template": day[1],
                 "day_type": day[2]
             }
+    for filename in listdir("schedules"):
+        load_schedule(path.join("schedules", filename))
     return schedule
 
-daily_schedule = load_schedule()
+
+def load_schedule(filename):
+    print("Loading schedule from %s" % filename)
+    with open(filename, newline='\n') as f:
+        reader = csv.reader(f, delimiter=',', quotechar='"')
+
+        name = next(reader)[0]
+        desc = next(reader)[0]
+        if models.Schedule.query.filter_by(name=name).count() != 0:
+            return
+
+        new_schedule = models.Schedule(name=name, desc=desc, private=False)
+        prev_node = None
+        for row in list(reader):
+            start = time_to_int(datetime.datetime.strptime(row[1], '%H:%M').time())
+            end = time_to_int(datetime.datetime.strptime(row[2], '%H:%M').time())
+
+            slot_node = models.ScheduleSlot(name=row[0], start=start, end=end)
+            db.session.add(slot_node)
+            db.session.commit()
+            if prev_node is not None:
+                if slot_node.start < prev_node.end:
+                    return "Error - Make sense please"
+                prev_node.next = slot_node.id
+                db.session.add(prev_node)
+            else:
+                new_schedule.head_slot = slot_node.id
+            prev_node = slot_node
+        prev_node.next = -1;
+        db.session.add(prev_node)
+        db.session.add(new_schedule)
+        db.session.commit()
+
+
+
+daily_schedule = load_schedules()
+print(daily_schedule)
 
 
 @app.route("/")
 def index():
     date = datetime.date.today().strftime("%m-%d-%Y")
-    schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get("date") else "Regular"
+    schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get(date) else "Regular"
     schedule = models.Schedule.query.filter_by(name=schedule_name).one()
     return redirect(url_for("display_schedule", id=schedule.id))
 

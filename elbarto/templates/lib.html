@@ -14,12 +14,12 @@
   {% for schedule in schedules %}
 
   <figure class="figure">
-      <a href="/display/{{schedule.id}}">
+      <a href="{{ url_for('display_schedule', id = schedule.id) }}">
 	{{schedule.name }}
         <figcaption class="figure-caption figure-caption-title">{{schedule.desc}}</figcaption>
       </a>
     </figure>
-  
+
     {% endfor %}
 
 </div>
