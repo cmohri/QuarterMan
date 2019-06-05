@@ -1,7 +1,7 @@
 QuarterMan
 Amit Narang
 Clara Mohri
-Damian Wasileciwcz
+Damian Wasilewicz
 Jared Asch
 pd 6
 ---------------------
@@ -116,4 +116,10 @@ aschJa -- 2019-06-04 23:45
 Added links to galleries
 Can load day types from csv file
 Home page renders schedule for appropriate day
+==============================================================
+narangAm -- 2019-06-05 10:46
+--------------------------------------------------------------
+Created sample code snippets for Flask-SQLAlchemy and Datetime, and added
+them to the notes_and_code folder. Just need to create a demo of
+Authlib now. Added some dummy data to the schedules.csv file.
 ==============================================================
