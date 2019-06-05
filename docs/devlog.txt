@@ -98,3 +98,16 @@ damianW -- 2019-05-30 23:02
 Worked with Jared and Clara to attempt to get galleries working
 Bugs with atom and templates not appearing, will debug soon
 ==============================================================
+damianW and claraM -- 2019-05-30 23:33
+--------------------------------------------------------------
+Worked together to get most of galleries working
+Now, when a user goes to public gallery,
+they can click on a link to a template and it will load up
+with that specific schedule's times and slots. Time is
+displayed in seconds which will be fixed with int_to_time
+function. Js onload function should work once python list
+is converted into js, and will be done in class.
+Public gallery templates should work almost indentically to
+private and so the latter should be easy to implement Now
+that private db ownership works.
+==============================================================
