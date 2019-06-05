@@ -42,12 +42,11 @@ def load_schedule():
     with open('schedules.csv', newline='\n') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
         for day in reader:
+
             schedule[day[0]] = {
                 "template": day[1],
                 "day_type": day[2]
             }
-            if models.Schedule.query.filter_by(name=day[2]).count() == 0:
-                print("Schedule %s was not found, please add it and restart the server" % day[2])
     return schedule
 
 daily_schedule = load_schedule()
@@ -96,6 +95,8 @@ def create_schedule():
             else:
                 new_schedule.head_slot = slot_node.id
             prev_node = slot_node
+        prev_node.next = -1;
+        db.session.add(prev_node)
         db.session.add(new_schedule)
         db.session.commit()
         return "Success!"
