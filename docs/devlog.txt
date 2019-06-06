@@ -123,3 +123,12 @@ Created sample code snippets for Flask-SQLAlchemy and Datetime, and added
 them to the notes_and_code folder. Just need to create a demo of
 Authlib now. Added some dummy data to the schedules.csv file.
 ==============================================================
+damianW and aschJa -- 2019-06-05 17:30
+--------------------------------------------------------------
+Worked on getting js for new templates working
+Highlighting the period we're in works now, but with Bug
+where period stays highlighted
+Added conference day schedule csv file
+There is a bug with footer - stays fixed in place when
+scrolling, and is transparent on some pages. Will fix!
+==============================================================
