@@ -7,7 +7,7 @@ function timeString(time){
 
 function timeLoop(time, schedule){
     // Update the clock
-    console.log(time);
+
     timeText = document.getElementById("time");
     let hours = Math.floor(time / 3600);
     let minutes = Math.floor((time - hours * 3600) / 60);
@@ -22,9 +22,22 @@ function timeLoop(time, schedule){
 	period -= 1;
     }
 
-    if (schedule[period].start > time){
-	var into ="none";
-	var left = "none";
+    if (schedule[period].start >= time){
+
+	document.getElementById("into_txt").innerHTML = "minutes after end";
+        document.getElementById("left_txt").innerHTML = "minutes until start";
+	
+
+	var left = Math.floor ((schedule[period].start - time)/60 ); // until start
+	var into =  Math.floor ((time + 86400 - schedule[schedule.length - 1].end )/60); // after end
+	console.log (schedule[period].start - time);
+	
+	if (schedule[period].start - time < 1){
+
+	    document.getElementById("into_txt").innerHTML = "minutes into";
+            document.getElementById("left_txt").innerHTML = "minutes left";
+	}
+	
 
     } else if (schedule[period].end > time ){
 
@@ -37,16 +50,34 @@ function timeLoop(time, schedule){
     } else { // if end time is also less than time
 
 	if (period + 1 < schedule.length){ // if not at end of schedule
-
+	    // to handle transitions:
+	    
 	    var into = ( Math.floor ( (time - schedule[period].end)  / 60));
 	    var left = ( Math.floor( ((schedule[period + 1].start - time) / 60)));
 	    var n = period + 1;
 	    document.getElementById("slot-" + period.toString()).style.color = "red";
 	    document.getElementById("slot-" + n.toString()).style.color = "red";
+	    
+	    document.getElementById("into_txt").innerHTML = "minutes after";
+	    document.getElementById("left_txt").innerHTML = "minutes before";
+	    
+	    console.log( schedule[period + 1].start - time);
+	    if ( (schedule[period + 1].start - time) < 1){
+		document.getElementById("slot-" + period.toString()).style.color = "black";
+		document.getElementById("into_txt").innerHTML = "minutes into";
+		document.getElementById("left_txt").innerHTML = "minutes left";
+	    }
 	}
 	else { // past end of schedule
-	    var into ="none";
-            var left = "none";
+	    var n = schedule.length - 1;
+	    document.getElementById("slot-" + n.toString()).style.color = "black";
+	    
+	    var into = Math.floor ( (time - schedule[n].end )/60);
+            var left = Math.floor ((schedule[0].start + (86400 - time)/60));
+
+	    document.getElementById("into_txt").innerHTML = "minutes after end";
+            document.getElementById("left_txt").innerHTML = "minutes until start";
+	    
 	}
 
     }
@@ -55,7 +86,7 @@ function timeLoop(time, schedule){
     document.getElementById("minutes_left").innerHTML = left;
 
 
-	console.log(time);
+
 
     setTimeout(timeLoop, 1000, time + 1, schedule);
 }
