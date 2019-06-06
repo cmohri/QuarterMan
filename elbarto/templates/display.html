@@ -6,7 +6,11 @@
      <div class = "row">
        <!-- Creates table for schedule -->
         <div class = "col-lg-8 schedule-container">
-            <h1 class = "schedule-title">{{ day_type }} {{ name }} Day</h1>
+            {% if day_type %}
+                <h1 class = "schedule-title">{{ day_type }} {{ name }} Day</h1>
+            {% else %}
+                <h1 class = "schedule-title">{{ name }}</h1>
+            {% endif %}
             <table class = "schedule-table" border="1" width="100%" cellspacing="3">
 
 

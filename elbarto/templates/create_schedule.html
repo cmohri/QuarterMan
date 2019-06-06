@@ -23,12 +23,14 @@
             <div class="input-group">
                 {{ schedule_form.desc(class_="form-control", placeholder="A quick description of your schedule") }}
             </div>
+
+            <div class="custom-control custom-checkbox mr-sm-2" style="margin-top: 20px">
+                {{ schedule_form.private(class_="custom-control-input", id="private-checkbox", style="padding: 0px 10px;") }}
+                <label class="custom-control-label" for="private-checkbox">Keep this Schedule Private</label>
+            </div>
+
+
             <hr>
-	    
-	    <label>Private</label> 
-	    <div class = "input-group">
-	       {{schedule_form.private(class_="form-control")}} <br>
-		 </div>
     
         </form>
         <button class = "btn btn-outline-primary" onclick="scheduleToJSON()">Create Schedule</button>

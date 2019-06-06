@@ -33,11 +33,11 @@ function timeLoop(time, schedule){
 	var left = ( Math.floor((schedule[period].end - time) / 60));
 	// Highlight period
 	document.getElementById("slot-" + period.toString()).style.color = "red";
-	
+
     } else { // if end time is also less than time
 
 	if (period + 1 < schedule.length){ // if not at end of schedule
-	    
+
 	    var into = ( Math.floor ( (time - schedule[period].end)  / 60));
 	    var left = ( Math.floor( ((schedule[period + 1].start - time) / 60)));
 	    var n = period + 1;
@@ -48,15 +48,15 @@ function timeLoop(time, schedule){
 	    var into ="none";
             var left = "none";
 	}
-	    
+
     }
 
-    document.getElementById('minutes_into').innerHTML  = into;     
-    document.getElementById("minutes_left").innerHTML = left;      
+    document.getElementById('minutes_into').innerHTML  = into;
+    document.getElementById("minutes_left").innerHTML = left;
 
 
-	
-    
+	console.log(time);
+
     setTimeout(timeLoop, 1000, time + 1, schedule);
 }
 

@@ -99,7 +99,14 @@ body {
 }
 
 footer {
-    position: absolute;
     width: 100%;
     bottom: 0;
+    position: sticky;
+}
+
+.figure {
+    padding: 10px;
+    border: 1px solid #007bff;
+    margin: 10px;
+    box-shadow: 2px 2px 6px 0px lightgrey;
 }

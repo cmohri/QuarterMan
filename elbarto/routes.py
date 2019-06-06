@@ -165,6 +165,8 @@ def display_schedule(id):
         }
 
     schedule = models.Schedule.query.filter_by(id = id).one()
+    if schedule.private is True and (not session.get("user") or schedule.author_id != session.get("user").get("id")):
+        return redirect(url_for("index"))
     curr = models.ScheduleSlot.query.filter_by(id = schedule.head_slot).one()
 
     schedule_slots = [generate_slot_dict(curr)]
