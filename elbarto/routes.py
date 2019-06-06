@@ -3,7 +3,7 @@ from os import urandom, listdir, path
 import json, csv
 import datetime
 from elbarto import app, models, oauth, db
-from .forms import TemplateForm, ScheduleForm
+from .forms import ScheduleForm
 
 from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
@@ -109,7 +109,7 @@ def create_schedule():
     if session.get("user") is None:
         return redirect("/google/login")
     schedule_form = ScheduleForm()
-    if request.method == "GET":
+    if request.method == "GET" or (not schedule_form.validate_on_submit()):
         return render_template("create_schedule.html", schedule_form=schedule_form)
     else:
         schedule = json.loads(request.form.get("schedule"))
