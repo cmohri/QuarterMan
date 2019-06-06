@@ -132,3 +132,15 @@ Added conference day schedule csv file
 There is a bug with footer - stays fixed in place when
 scrolling, and is transparent on some pages. Will fix!
 ==============================================================
+damianW -- 2019-06-05 19:07
+--------------------------------------------------------------
+Fixed footer position and all the issues with it
+Catching errors: When the end time is earlier than start time
+error is caught, and when schedule is created with empty
+title or description user is sent back to schedule creation
+page.
+NEED TO CATCH:
+when inputted time doesn't match military time format
+non-alphanumeric input
+when schedule slots are empty
+==============================================================
