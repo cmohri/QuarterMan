@@ -113,6 +113,11 @@ def create_schedule():
         return render_template("create_schedule.html", schedule_form=schedule_form)
     else:
         schedule = json.loads(request.form.get("schedule"))
+
+        if models.Schedule.query.filter_by(name=request.form.get("title")).count() != 0:
+            flash("Error - Schedule by this name already exists")
+            return render_template("create_schedule.html", schedule_form=schedule_form)
+
         if len(schedule) == 0:
             flash("Error - You must enter at least one schedule slot")
             return render_template("create_schedule.html", schedule_form=schedule_form)
