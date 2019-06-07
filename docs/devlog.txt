@@ -149,3 +149,9 @@ narangAm -- 2019-06-06 21:47
 Reconfigured .conf file and rest of project to put up on a server.
 Working on authlib demo and instructions.
 ==============================================================
+narangAm -- 2019-06-06 22:52
+--------------------------------------------------------------
+Bought domain name (quartermman.com) because it was cheaper than quarterman.com.
+Binded quartermann.com to the droplet. Reconfigured the .conf files and apache2 guides.
+Redid README.md and updated devlog.
+==============================================================

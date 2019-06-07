@@ -9,7 +9,12 @@ from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
 from loginpass.google import Google
 
-# oath stuff
+BASE_DIR = path.dirname(path.abspath(__file__))
+classapath = path.join(BASE_DIR, "schedules.csv")
+
+classbpath = path.join(BASE_DIR,"schedules")
+
+# oauth stuff
 def handle_authorize(remote, token, user_info):
     ''' Handles authentication of user information '''
     q = models.User.query.filter_by(email=user_info.email)
@@ -41,15 +46,15 @@ app.register_blueprint(blueprint, url_prefix='/google')
 
 def load_schedules():
     schedule = {}
-    with open('schedules.csv', newline='\n') as f:
+    with open(classapath, newline='\n') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
         for day in reader:
             schedule[day[0]] = {
                 "A_or_B": day[1],
                 "day_type": day[2]
             }
-    for filename in listdir("schedules"):
-        load_schedule(path.join("schedules", filename))
+    for filename in listdir(classbpath):
+        load_schedule(path.join(classbpath, filename))
     return schedule
 
 
@@ -66,8 +71,8 @@ def load_schedule(filename):
         new_schedule = models.Schedule(name=name, desc=desc, private=False)
         prev_node = None
         for row in list(reader):
-            start = time_to_int(datetime.datetime.strptime(row[1], '%H:%M').time())
-            end = time_to_int(datetime.datetime.strptime(row[2], '%H:%M').time())
+            start = time_to_int(datetime.datetime.strptime(row[1].strip(), '%H:%M').time())
+            end = time_to_int(datetime.datetime.strptime(row[2].strip(), '%H:%M').time())
 
             slot_node = models.ScheduleSlot(name=row[0], start=start, end=end)
             db.session.add(slot_node)
@@ -127,8 +132,8 @@ def create_schedule():
         new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=is_private, author_id=session.get("user").get("id"))
         for slot in schedule:
             try:
-                start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
-                end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
+                start = time_to_int(datetime.datetime.strptime(slot["start"].strip(), '%H:%M').time())
+                end = time_to_int(datetime.datetime.strptime(slot["end"].strip(), '%H:%M').time())
             except:
                 flash("Error - Issue with entered time")
                 return render_template("create_schedule.html", schedule_form=schedule_form)
