@@ -71,8 +71,8 @@ def load_schedule(filename):
         new_schedule = models.Schedule(name=name, desc=desc, private=False)
         prev_node = None
         for row in list(reader):
-            start = time_to_int(datetime.datetime.strptime(row[1], '%H:%M').time())
-            end = time_to_int(datetime.datetime.strptime(row[2], '%H:%M').time())
+            start = time_to_int(datetime.datetime.strptime(row[1].strip(), '%H:%M').time())
+            end = time_to_int(datetime.datetime.strptime(row[2].strip(), '%H:%M').time())
 
             slot_node = models.ScheduleSlot(name=row[0], start=start, end=end)
             db.session.add(slot_node)
@@ -127,8 +127,8 @@ def create_schedule():
         new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=is_private, author_id=session.get("user").get("id"))
         for slot in schedule:
             try:
-                start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
-                end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
+                start = time_to_int(datetime.datetime.strptime(slot["start"].strip(), '%H:%M').time())
+                end = time_to_int(datetime.datetime.strptime(slot["end"].strip(), '%H:%M').time())
             except:
                 flash("Error - Issue with entered time")
                 return render_template("create_schedule.html", schedule_form=schedule_form)
