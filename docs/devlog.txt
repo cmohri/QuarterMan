@@ -144,3 +144,8 @@ when inputted time doesn't match military time format
 non-alphanumeric input
 when schedule slots are empty
 ==============================================================
+narangAm -- 2019-06-06 21:47
+--------------------------------------------------------------
+Reconfigured .conf file and rest of project to put up on a server.
+Working on authlib demo and instructions.
+==============================================================
