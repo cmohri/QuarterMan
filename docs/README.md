@@ -101,11 +101,25 @@ For our final project, our group decided to try to create a version of the Bert 
 
 ```mv elbarto.conf /etc/apache2/sites-available/```
 
-13.  Restart your Apache server.
+13. Change the system variables.
+
+```sudo -H nano /etc/environment```
+
+14. In that document, insert the following line.
+
+```FLASK_APP=elbarto/run.py```
+
+15. Go to [this link](https://developers.google.com/adwords/api/docs/guides/authentication#webapp) and follow the instructions to set up your Google OAuth credentials, using your server name when appropriate. 
+
+16. Run the following command in your terminal.
+
+```make```
+
+17.  Restart your Apache server.
 
 ```sudo service apache2 restart```
 
-14. Navigate to your server on your browser. You should be good to go. 
+18. Navigate to your server on your browser. You should be good to go. 
 
 # API
 
