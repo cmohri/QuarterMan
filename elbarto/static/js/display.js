@@ -22,7 +22,7 @@ function timeLoop(time, schedule){
     timeText.innerHTML = timeString(time);
     let period = 0;
     while (period < schedule.length && schedule[period].start < time){
-	period += 1;
+		period += 1;
     }
     //console.log(period - 1);
     if (period != 0){
@@ -35,7 +35,7 @@ function timeLoop(time, schedule){
         document.getElementById("left_txt").innerHTML = "minutes until start";
 	
 
-	var left = Math.floor ((schedule[period].start - time)/60 ); // until start
+	var left = Math.floor ((schedule[period].start - time)/3600 ); // until start
 	var into =  Math.floor ((time + 86400 - schedule[schedule.length - 1].end )/60); // after end
 	console.log (schedule[period].start - time);
 	
@@ -80,7 +80,7 @@ function timeLoop(time, schedule){
 	    document.getElementById("slot-" + n.toString()).style.color = "black";
 	    
 	    var into = Math.floor ( (time - schedule[n].end )/60);
-            var left = Math.floor ((schedule[0].start + (86400 - time)/60));
+	    var left = Math.floor ( (3600 * 24 - time + schedule[0].start)/60);
 
 	    document.getElementById("into_txt").innerHTML = "minutes after end";
             document.getElementById("left_txt").innerHTML = "minutes until start";
