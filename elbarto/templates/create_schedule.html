@@ -9,17 +9,26 @@
             <rect id="svg_2" height="2.5" width="10" y="8.75" x="5" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
             <rect id="svg_3" height="10" width="2.5" y="5" x="8.75" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff"/>
         </svg>
-{#        <img id="add-slot" src="{{ url_for('static', filename='img/plus-icon.svg') }}">#}
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class = "text-danger">{{ messages[0] }}</p>
+            {% endfor %}
+        {% endwith %}
         <hr>
         <form action = "{{ url_for('create_schedule') }}" method="POST" id = "schedule-form">
             {{ schedule_form.hidden_tag() }}
 
-            <label>Schedule Title</label>
+            <label>Schedule Title</label>{% for error in schedule_form.title.errors %}
+                <p class = "text-danger">{{ error }}</p>
+            {% endfor %}
             <div class = "input-group">
                 {{ schedule_form.title(class_="form-control", placeholder="A short, memorable title for your schedule") }}
             </div>
 
             <label style = "margin-top: 20px;">Schedule Description</label>
+            {% for error in schedule_form.desc.errors %}
+                <p class = "text-danger">{{ error }}</p>
+            {% endfor %}
             <div class="input-group">
                 {{ schedule_form.desc(class_="form-control", placeholder="A quick description of your schedule") }}
             </div>

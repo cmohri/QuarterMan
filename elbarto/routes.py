@@ -113,32 +113,34 @@ def create_schedule():
         return render_template("create_schedule.html", schedule_form=schedule_form)
     else:
         schedule = json.loads(request.form.get("schedule"))
+        if len(schedule) == 0:
+            flash("Error - You must enter at least one schedule slot")
+            return render_template("create_schedule.html", schedule_form=schedule_form)
         prev_node = None
 
         is_private = request.form.get("private") == "y"
         new_schedule = models.Schedule(name=request.form.get("title"), desc=request.form.get("desc"), private=is_private, author_id=session.get("user").get("id"))
         for slot in schedule:
-            start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
-            end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
+            try:
+                start = time_to_int(datetime.datetime.strptime(slot["start"], '%H:%M').time())
+                end = time_to_int(datetime.datetime.strptime(slot["end"], '%H:%M').time())
+            except:
+                flash("Error - Issue with entered time")
+                return render_template("create_schedule.html", schedule_form=schedule_form)
 
             slot_node = models.ScheduleSlot(name=slot["name"], start=start, end=end)
             db.session.add(slot_node)
             db.session.commit()
             if slot_node.end == slot_node.start:
-                return "Error- Schedules cannot have same start and end times"
+                flash("Error - Schedules cannot have same start and end times")
+                return render_template("create_schedule.html", schedule_form=schedule_form)
             if slot_node.end < slot_node.start:
-                return "Error- Schedule cannot end before it starts"
+                flash("Error - Schedule cannot end before it starts")
+                return render_template("create_schedule.html", schedule_form=schedule_form)
             if prev_node is not None:
-                if slot_node.start < prev_node.end:
-                    return "Error - Schedules cannot overlap"
-                if slot_node.start == prev_node.start:
-                    return "Error - Schedules cannot overlap"
-                if slot_node.start == prev_node.end:
-                    return "Error - Schedules cannot overlap"
-                if slot_node.end == prev_node.start:
-                    return "Error - Schedules cannot overlap"
                 if slot_node.end == prev_node.end:
-                    return "Error - Schedules cannot overlap"
+                    flash("Error - Schedules cannot overlap")
+                    return render_template("create_schedule.html", schedule_form=schedule_form)
                 prev_node.next = slot_node.id
                 db.session.add(prev_node)
             else:
