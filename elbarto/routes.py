@@ -124,9 +124,21 @@ def create_schedule():
             slot_node = models.ScheduleSlot(name=slot["name"], start=start, end=end)
             db.session.add(slot_node)
             db.session.commit()
+            if slot_node.end == slot_node.start:
+                return "Error- Schedules cannot have same start and end times"
+            if slot_node.end < slot_node.start:
+                return "Error- Schedule cannot end before it starts"
             if prev_node is not None:
                 if slot_node.start < prev_node.end:
-                    return "Error - Make sense please"
+                    return "Error - Schedules cannot overlap"
+                if slot_node.start == prev_node.start:
+                    return "Error - Schedules cannot overlap"
+                if slot_node.start == prev_node.end:
+                    return "Error - Schedules cannot overlap"
+                if slot_node.end == prev_node.start:
+                    return "Error - Schedules cannot overlap"
+                if slot_node.end == prev_node.end:
+                    return "Error - Schedules cannot overlap"
                 prev_node.next = slot_node.id
                 db.session.add(prev_node)
             else:
