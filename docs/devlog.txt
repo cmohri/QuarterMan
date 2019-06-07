@@ -68,6 +68,10 @@ damianW -- 2019-05-23 16:30
 --------------------------------------------------------------
 Made small changes with wtforms
 ==============================================================
+mohriCl -- 2019-05-24
+--------------------------------------------------------------
+Worked on homepage functionality.
+==============================================================
 aschJa -- 2019-05-26
 --------------------------------------------------------------
 Added OAuth integration with Google using loginpass, a library provided by authlib
@@ -97,6 +101,10 @@ damianW -- 2019-05-30 23:02
 --------------------------------------------------------------
 Worked with Jared and Clara to attempt to get galleries working
 Bugs with atom and templates not appearing, will debug soon
+==============================================================
+mohriCl -- 2019-05-30
+-------------------------------------------------------------
+Worked on getting gallery up and running. Added function to routes.py to handle specific schedules
 ==============================================================
 damianW and claraM -- 2019-06-04 23:33
 --------------------------------------------------------------
@@ -144,6 +152,10 @@ when inputted time doesn't match military time format
 non-alphanumeric input
 when schedule slots are empty
 ==============================================================
+mohriCl -- 2019-06-05
+-------------------------------------------------------------
+Worked on homepage functionality 
+==============================================================
 narangAm -- 2019-06-06 21:47
 --------------------------------------------------------------
 Reconfigured .conf file and rest of project to put up on a server.
@@ -155,3 +167,13 @@ Bought domain name (quartermman.com) because it was cheaper than quarterman.com.
 Binded quartermann.com to the droplet. Reconfigured the .conf files and apache2 guides.
 Redid README.md and updated devlog.
 ==============================================================
+mohriCl -- 2019-06-06 
+--------------------------------------------------------------
+Fixed highlighting of periods and made more robust.
+Added functionality for when time is before start of schedule or after end of schedule.
+==============================================================
+mohriCl -- 2019-06-07
+-------------------------------------------------------------
+Worked on adding OATH functinoality to droplet. Registered for credients with Google.
+Fixed URI redirect information.
+Contributed in getting home page up to speed with current directory.
