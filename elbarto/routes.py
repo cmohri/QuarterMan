@@ -54,7 +54,7 @@ def load_schedules():
                 "day_type": day[2]
             }
     for filename in listdir(classbpath):
-        load_schedule(path.join("schedules", filename))
+        load_schedule(path.join(classbpath, filename))
     return schedule
 
 
