@@ -24,18 +24,18 @@ For our final project, our group decided to try to create a version of the Bert 
 ```python3 -m venv name_of_environment```
 - If you're using Python2: 
 ```pip install virtualenv```
-```virtualenv name_of_environment```
+```virtualenv venv```
 
 3. Activate your virtual environment. 
 
 - If you're on Linux/MacOS:
-``` . ~/name_of_environment/bin/activate```
+``` . ~/venv/bin/activate```
 - If you're on Windows: 
-``` source /name_of_environment/bin/activate```
+``` source /venv/bin/activate```
 
 4. Install the project's dependencies.
 
-```pip install -r /doc/requirements.txt```
+```pip3 install -r /docs/requirements.txt```
 
 5. Run the app!
 
@@ -47,48 +47,65 @@ For our final project, our group decided to try to create a version of the Bert 
 
 ## On a server
 
-1. Once you are inside your droplet, navigate to the correct directory. 
+1. Once you are inside your properly-configured droplet (you can seek some learnination from [here](https://docs.google.com/document/d/12b4gf9_1EiJDt6ValtoDVsZPLhGhyOdmnW4n2Xg5E-A/edit?ts=5cdd8691) and [here](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04)), navigate to the correct directory. 
 
-```mv /var/www/```
+```cd /var/www/```
 
 2. Clone our repository. 
 
-```git clone https://github.com/narang-amit/QuarterMan.git```
+```git clone https://github.com/narang-amit/QuarterMan.git elbarto```
 
 3. Navigate to the correct directory.
 
-```mv QuarterMan/elbarto```
+```cd elbarto/elbarto```
 
 4. Install the capability to create a virtual environment and then create a virtual environment. Replace name_of_environment with the desired name of your virtual environment.
 
 - If you're using Python3 or higher:
-```python3 -m venv name_of_environment```
+```python3 -m venv venv```
 - If you're using Python2: 
 ```pip install virtualenv```
 ```virtualenv name_of_environment```
 
 6. Activate your virtual environment. 
 
-``` . ~/name_of_environment/bin/activate```
+``` . ~/venv/bin/activate```
 
 7. Navigate to the correct directory. 
 
-```mv ../```
+```cd ../```
 
 7. Install the project's dependencies.
 
-```pip install -r /doc/requirements.txt```
+```pip install -r /docs/requirements.txt```
 
-3. Copy the name of the server you wish to put our project on. One way you could do so is by running the following command, which will return the server name.
+8. Enable site in apache.
+
+```sudo a2ensite elbarto```
+```sudo a2enmod wsgi```
+
+9. Copy the name of the server you wish to put our project on. One way you could do so is by running the following command, which will return the server name.
 
 ```curl http://icanhazip.com```
 
-4. Insert the server name and the email address you wish people to contact you on in the elbarto.conf file. 
+10. Insert the server name in the elbarto.conf file. 
 
 ```ServerName name_of_server```
-```ServerAdmin email_to_contact```
 
-5. Navigate to your server on your browser. You should be good to go. 
+11. Change the permissions of your stuff.
+
+```chgrp -R www-data elbarto```
+```chmod -R g+w elbarto```
+
+12. Move the elbarto.conf file to the appropriate directory.
+
+```mv elbarto.conf /etc/apache2/sites-available/```
+
+13.  Restart your Apache server.
+
+```sudo service apache2 restart```
+
+14. Navigate to your server on your browser. You should be good to go. 
 
 # API
 
