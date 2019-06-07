@@ -9,7 +9,12 @@ from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, OAUTH_BACKENDS
 from loginpass.google import Google
 
-# oath stuff
+BASE_DIR = path.dirname(path.abspath(__file__))
+classapath = path.join(BASE_DIR, "schedules.csv")
+
+classbpath = path.join(BASE_DIR,"schedules")
+
+# oauth stuff
 def handle_authorize(remote, token, user_info):
     ''' Handles authentication of user information '''
     q = models.User.query.filter_by(email=user_info.email)
@@ -41,14 +46,14 @@ app.register_blueprint(blueprint, url_prefix='/google')
 
 def load_schedules():
     schedule = {}
-    with open('schedules.csv', newline='\n') as f:
+    with open(classapath, newline='\n') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
         for day in reader:
             schedule[day[0]] = {
                 "A_or_B": day[1],
                 "day_type": day[2]
             }
-    for filename in listdir("schedules"):
+    for filename in listdir(classbpath):
         load_schedule(path.join("schedules", filename))
     return schedule
 
