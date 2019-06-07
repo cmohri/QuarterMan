@@ -1,4 +1,4 @@
-# QuarterMan
+# [QuarterMan](www.quartermman.com)
 
 # Roster
 ## Amit Narang (PMAN), Jared Asch, Damian Wasilewicz, & Clara Mohri
@@ -45,7 +45,13 @@ For our final project, our group decided to try to create a version of the Bert 
 
 7. Enjoy!
 
-## On a server
+## On a server (NOTE: IMPOSSIBLE)
+
+### You cannot host this on a server, as Google OAuth doesn't work on IP addresses. Because of that, we bought a domain and hosted it to show that it was possible. You can find proof at [www.quartermman.com](www.quartermman.com).
+
+#### We had written up these instructions before, so I am including them below as a reference. Once again, these instructions will not function properly.
+
+
 
 1. Once you are inside your properly-configured droplet (you can seek some learnination from [here](https://docs.google.com/document/d/12b4gf9_1EiJDt6ValtoDVsZPLhGhyOdmnW4n2Xg5E-A/edit?ts=5cdd8691) and [here](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04)), navigate to the correct directory. 
 
