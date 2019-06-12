@@ -3,7 +3,7 @@
 # Roster
 ## Amit Narang (PMAN), Jared Asch, Damian Wasilewicz, & Clara Mohri
 
-# Watch our demo video here! (Currently not available)
+# Watch our demo video [here](https://www.youtube.com/watch?v=YDvlO0RQJCI)!
 
 # Overview
 
