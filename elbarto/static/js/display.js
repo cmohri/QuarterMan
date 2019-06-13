@@ -8,8 +8,15 @@ function timeString(time){
     else {
 	post = "AM";
     }
-    
-    return hours % 12 + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2) + " " + post;
+    if (hours == 12 || hours == 0) {
+	//console.log(hours);
+	tstr = 12;
+    }
+    else {
+        //console.log(hours);
+	tstr = hours % 12;
+    }
+    return tstr + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2) + " " + post;
 }
 
 function timeLoop(time, schedule){
@@ -68,7 +75,7 @@ function timeLoop(time, schedule){
 	    document.getElementById("into_txt").innerHTML = "minutes after";
 	    document.getElementById("left_txt").innerHTML = "minutes before";
 	    
-	    console.log( schedule[period + 1].start - time);
+	   // console.log( schedule[period + 1].start - time);
 	    if ( (schedule[period + 1].start - time) < 1){
 		document.getElementById("slot-" + period.toString()).style.color = "black";
 		document.getElementById("into_txt").innerHTML = "minutes into";
