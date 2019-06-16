@@ -98,7 +98,9 @@ def index():
     date = datetime.date.today().strftime("%m-%d-%Y")
     schedule_name = daily_schedule[date]["day_type"] if daily_schedule.get(date) else "Regular"
     day_type = daily_schedule[date]["A_or_B"] if daily_schedule.get(date) else ""
-    schedule = models.Schedule.query.filter_by(name=schedule_name).one()
+    schedule = models.Schedule.query.filter_by(name=schedule_name).first()
+    if schedule is None:
+        schedule = models.Schedule.query.filter_by(name="Regular").first()
     return redirect(url_for("display_schedule", id=schedule.id, day_type=day_type))
 
 
